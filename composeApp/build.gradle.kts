@@ -141,7 +141,9 @@ compose.desktop {
 }
 
 libres {
-    // https://github.com/Skeptick/libres#setup
+    generatedClassName = "MainRes"
+    generateNamedArguments = true
+    baseLocaleLanguageCode = "en"
 }
 tasks.getByPath("desktopProcessResources").dependsOn("libresGenerateResources")
 tasks.getByPath("desktopSourcesJar").dependsOn("libresGenerateResources")

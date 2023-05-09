@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_greeting">CompCardero on ${platform}</string>
+</resources>

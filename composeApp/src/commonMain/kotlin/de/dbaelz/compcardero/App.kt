@@ -16,7 +16,7 @@ internal fun App() = AppTheme {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "CompCardero on ${getPlatformName()}",
+            text = MainRes.string.splash_greeting.format(getPlatformName()),
             fontWeight = FontWeight.ExtraBold,
             fontSize = 24.sp
         )
