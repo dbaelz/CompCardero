@@ -1,6 +1,8 @@
 plugins {
-    kotlin("multiplatform").apply(false)
-    id("com.android.application").apply(false)
-    id("com.android.library").apply(false)
-    id("org.jetbrains.compose").apply(false)
+    alias(libs.plugins.multiplatform).apply(false)
+    alias(libs.plugins.compose).apply(false)
+    alias(libs.plugins.cocoapods).apply(false)
+    alias(libs.plugins.android.application).apply(false)
+    alias(libs.plugins.libres).apply(false)
+    alias(libs.plugins.buildConfig).apply(false)
 }

@@ -6,11 +6,13 @@ It's developed for Android, iOS and desktop.
 See the [documentation of Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform-mobile-getting-started.html) for the required steps.
 
 ## Project structure
-The project consists of 4 modules:
-- `shared`: Common logic for Android iOS and desktop
-- `androidApp`: Builds the Android app
+The project consists of the following modules:
+- `composeApp`
+    - `commonMaim`: Common logic for Android, iOS and desktop.
+    - `androidMain`: Specific code to build the Android app
+    - `desktopMain`: The desktop application
+    - `iOSMain`: Code specific to the iOS app
 - `iosApp`: A Xcode project for the iOS app
-- `desktopApp`: The desktop application
 
 ## Contribution
 Feel free to contribute via pull requests.
