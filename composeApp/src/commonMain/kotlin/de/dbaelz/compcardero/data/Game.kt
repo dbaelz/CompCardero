@@ -1,5 +1,7 @@
 package de.dbaelz.compcardero.data
 
+import io.github.aakira.napier.Napier
+
 class Game(
     private val player1: Player,
     private val player2: Player,
@@ -22,7 +24,7 @@ class Game(
         }
 
         // TODO: Communicate winner to UI
-        println("Winner: ${determineWinner()}")
+        Napier.d("Winner: ${determineWinner()}")
     }
 
     private fun determineWinner(): Player? {
