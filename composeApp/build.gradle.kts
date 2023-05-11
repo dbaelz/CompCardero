@@ -26,7 +26,7 @@ kotlin {
 
     cocoapods {
         version = "1.0.0"
-        summary = "CompCardero is a simple card game with Kotlin Multiplatform and Compose"
+        summary = "CompCardero is a simple card game built with Kotlin Multiplatform and Compose"
         homepage = "https://github.com/dbaelz/CompCardero"
         ios.deploymentTarget = "11.0"
         podfile = project.file("../iosApp/Podfile")

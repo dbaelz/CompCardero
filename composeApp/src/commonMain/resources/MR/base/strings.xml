@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CompCardero</string>
+    <string name="splash_headline">CompCardero on</string>
+    <string name="splash_subline">A simple card game built with Kotlin Multiplatform and Compose</string>
+</resources>

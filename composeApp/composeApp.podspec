@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'CompCardero is a simple card game with Kotlin Multiplatform and Compose'
+    spec.summary                  = 'CompCardero is a simple card game built with Kotlin Multiplatform and Compose'
     spec.vendored_frameworks      = 'build/cocoapods/framework/ComposeApp.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '11.0'
