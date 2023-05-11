@@ -6,7 +6,7 @@ compose = "1.4.0"
 androidx-appcompat = "1.6.1"
 androidx-activityCompose = "1.7.0"
 compose-uitooling = "1.4.1"
-libres = "1.1.8"
+moko-resources = "0.22.0"
 voyager = "1.0.0-rc04"
 composeImageLoader = "1.3.1"
 napier = "2.6.1"
@@ -20,7 +20,8 @@ koin = "3.4.0"
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-uitooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-uitooling" }
-libres = { module = "io.github.skeptick.libres:libres-compose", version.ref = "libres" }
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 composeImageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "composeImageLoader" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
@@ -35,5 +36,5 @@ multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotl
 cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-libres = { id = "io.github.skeptick.libres", version.ref = "libres" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }

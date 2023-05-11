@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 internal fun App() = AppTheme {
@@ -16,7 +17,7 @@ internal fun App() = AppTheme {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = MainRes.string.splash_greeting.format(getPlatformName()),
+            text = stringResource(MR.strings.splash_greeting) + getPlatformName(),
             fontWeight = FontWeight.ExtraBold,
             fontSize = 24.sp
         )

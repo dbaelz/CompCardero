@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.cocoapods)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.libres)
+    alias(libs.plugins.moko.resources)
     alias(libs.plugins.buildConfig)
 }
 
@@ -42,7 +42,8 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                implementation(libs.libres)
+                implementation(libs.moko.resources)
+                implementation(libs.moko.resources.compose)
                 implementation(libs.voyager.navigator)
                 implementation(libs.composeImageLoader)
                 implementation(libs.napier)
@@ -140,13 +141,9 @@ compose.desktop {
     }
 }
 
-libres {
-    generatedClassName = "MainRes"
-    generateNamedArguments = true
-    baseLocaleLanguageCode = "en"
+multiplatformResources {
+    multiplatformResourcesPackage = "de.dbaelz.compcardero"
 }
-tasks.getByPath("desktopProcessResources").dependsOn("libresGenerateResources")
-tasks.getByPath("desktopSourcesJar").dependsOn("libresGenerateResources")
 
 buildConfig {
   // BuildConfig configuration here.
