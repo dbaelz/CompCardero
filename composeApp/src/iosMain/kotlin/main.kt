@@ -1,10 +1,11 @@
 import androidx.compose.ui.window.ComposeUIViewController
-import de.dbaelz.compcardero.App
+import cafe.adriel.voyager.navigator.Navigator
+import de.dbaelz.compcardero.splash.SplashScreen
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import platform.UIKit.UIViewController
 
 fun MainViewController(): UIViewController {
     Napier.base(DebugAntilog())
-    return ComposeUIViewController { App() }
+    return ComposeUIViewController { Navigator(SplashScreen()) }
 }
