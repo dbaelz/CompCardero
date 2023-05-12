@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.splash
+package de.dbaelz.compcardero.ui.splash
 
 class SplashScreenContract {
     sealed interface State {

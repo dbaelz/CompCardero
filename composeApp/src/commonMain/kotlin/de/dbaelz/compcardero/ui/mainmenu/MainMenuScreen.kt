@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.mainmenu
+package de.dbaelz.compcardero.ui.mainmenu
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.splash
+package de.dbaelz.compcardero.ui.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,10 +29,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.getPlatformName
-import de.dbaelz.compcardero.mainmenu.MainMenuScreen
-import de.dbaelz.compcardero.splash.SplashScreenContract.Event
-import de.dbaelz.compcardero.splash.SplashScreenContract.Navigation
-import de.dbaelz.compcardero.splash.SplashScreenContract.State
+import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Navigation
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.State
 import dev.icerock.moko.resources.compose.colorResource
 import dev.icerock.moko.resources.compose.stringResource
 

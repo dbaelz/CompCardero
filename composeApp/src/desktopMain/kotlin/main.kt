@@ -4,7 +4,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.splash.SplashScreen
+import de.dbaelz.compcardero.ui.splash.SplashScreen
 import dev.icerock.moko.resources.compose.stringResource
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier

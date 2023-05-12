@@ -1,10 +1,10 @@
-package de.dbaelz.compcardero.splash
+package de.dbaelz.compcardero.ui.splash
 
 import cafe.adriel.voyager.core.model.coroutineScope
 import de.dbaelz.compcardero.BaseStateScreenModel
-import de.dbaelz.compcardero.splash.SplashScreenContract.Event
-import de.dbaelz.compcardero.splash.SplashScreenContract.Navigation
-import de.dbaelz.compcardero.splash.SplashScreenContract.State
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Navigation
+import de.dbaelz.compcardero.ui.splash.SplashScreenContract.State
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
