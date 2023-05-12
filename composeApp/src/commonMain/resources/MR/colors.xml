@@ -2,4 +2,5 @@
 <resources>
     <color name="primary">#00796B</color>
     <color name="secondary">#607D8B</color>
+    <color name="onPrimary">#FFFFFF</color>
 </resources>

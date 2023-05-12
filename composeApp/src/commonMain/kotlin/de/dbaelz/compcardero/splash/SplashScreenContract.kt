@@ -2,12 +2,13 @@ package de.dbaelz.compcardero.splash
 
 class SplashScreenContract {
     sealed interface State {
-        // TODO: Add functionality to show an info box based on API call
-        object Content : State
+        object Loading : State
+        data class Content(val infoText: String) : State
     }
 
     sealed interface Event {
-        object OnClicked : Event
+        data class DataLoaded(val infoText: String) : Event
+        object ScreenClicked : Event
     }
 
     sealed interface Navigation {
