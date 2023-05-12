@@ -4,8 +4,6 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import cafe.adriel.voyager.navigator.Navigator
-import de.dbaelz.compcardero.ui.splash.SplashScreen
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 
@@ -26,7 +24,7 @@ class AppActivity : ComponentActivity() {
 
         Napier.base(DebugAntilog())
 
-        setContent { Navigator(SplashScreen()) }
+        setContent { App() }
     }
 }
 

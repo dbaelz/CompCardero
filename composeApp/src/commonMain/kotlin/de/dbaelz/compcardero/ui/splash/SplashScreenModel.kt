@@ -1,7 +1,7 @@
 package de.dbaelz.compcardero.ui.splash
 
 import cafe.adriel.voyager.core.model.coroutineScope
-import de.dbaelz.compcardero.BaseStateScreenModel
+import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Navigation
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.State

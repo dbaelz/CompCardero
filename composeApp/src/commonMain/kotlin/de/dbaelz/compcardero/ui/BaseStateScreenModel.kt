@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero
+package de.dbaelz.compcardero.ui
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import kotlinx.coroutines.flow.Flow
