@@ -1,40 +1,40 @@
 package de.dbaelz.compcardero.data
 
-class Player(private val name: String, private val gameConfig: GameConfig) {
-    var health: Int = gameConfig.startHealth
-    var energySlots: Int = gameConfig.startEnergy
-    var energy: Int = gameConfig.startEnergy
-    val deck: MutableList<Card> = mutableListOf()
-    val hand: MutableList<Card> = mutableListOf()
+import kotlin.math.min
 
-    fun onGameStarted() {
-        repeat(gameConfig.startingHandSize) {
-            drawCard()
-        }
-    }
-
-    fun drawCard() {
-        if (deck.isNotEmpty()) {
-            val card = hand.random()
-            deck.remove(card)
-
-            if (hand.size < gameConfig.maxHandSize) {
-                hand.add(card)
-            } else {
-                // TODO: Add communication for "card was dropped"
-            }
-        }
-    }
-
+data class Player(
+    val name: String,
+    var deck: MutableList<GameCard>,
+    var hand: MutableList<GameCard>,
+    var health: Int,
+    var energy: Int,
+    var energySlots: Int,
+    private val gameConfig: GameConfig
+) {
     fun startTurn() {
-        energySlots++
-        energy = energySlots
-        drawCard()
+        energySlots = min(energySlots + gameConfig.energySlotsPerTurn, gameConfig.maxEnergySlots)
+        energy = min(energy + gameConfig.energyPerTurn, energySlots)
+        drawCards(gameConfig.maxHandSize - hand.size)
     }
 
-    fun playCards(): Int {
-        // TODO: Add basic implementation to play cards and return the damage done
-        //  To animate/display it in UI we should return every damage done separate
-        return 0
+    fun drawInitialCards(startHandSize: Int) {
+        drawCards(startHandSize)
+    }
+
+    private fun drawCards(amount: Int) {
+        if (amount > 0) {
+            hand.addAll(deck.take(amount))
+            deck = deck.drop(amount).toMutableList()
+        }
+    }
+
+    fun playCard(gameCard: GameCard): Int {
+        return if (hand.contains(gameCard) && energy >= gameCard.energyCost) {
+            hand.remove(gameCard)
+            energy -= gameCard.energyCost
+            gameCard.attack
+        } else {
+            0
+        }
     }
 }
