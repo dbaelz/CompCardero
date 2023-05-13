@@ -54,6 +54,8 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
         ) {
             IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), Color.Red)
 
+            IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), Color.Green)
+
             IndicatorLabel(gameCard.energyCost, CircleShape, Color.Blue)
         }
     }
@@ -72,9 +74,8 @@ private fun IndicatorLabel(value: Int, shape: Shape, color: Color) {
         Text(
             text = value.toString(),
             color = MaterialTheme.colors.onPrimary,
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center
         )
     }
 }

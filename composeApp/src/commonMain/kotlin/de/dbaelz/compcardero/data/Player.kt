@@ -32,6 +32,7 @@ data class Player(
         return if (hand.contains(gameCard) && energy >= gameCard.energyCost) {
             hand.remove(gameCard)
             energy -= gameCard.energyCost
+            health = min(health + gameCard.heal, gameConfig.startHealth)
             gameCard.attack
         } else {
             0

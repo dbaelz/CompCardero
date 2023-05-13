@@ -3,6 +3,7 @@ package de.dbaelz.compcardero.data
 import dev.icerock.moko.resources.ImageResource
 
 data class GameConfig(
+    val deckSize: Int = 12,
     val startHandSize: Int = 3,
     val maxHandSize: Int = 5,
     val startHealth: Int = 10,
@@ -15,6 +16,7 @@ data class GameConfig(
 data class GameCard(
     val id: Int,
     val attack: Int,
+    val heal: Int,
     val energyCost: Int,
     val imageResource: ImageResource
 )
