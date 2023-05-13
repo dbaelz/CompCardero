@@ -41,8 +41,7 @@ class MainMenuScreen : Screen {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(backgroundBrush)
-                .clickable { },
+                .background(backgroundBrush),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
         ) {
