@@ -10,26 +10,21 @@ import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 
 
-class SplashScreenModel : BaseStateScreenModel<State, Event, Navigation>(State.Loading) {
+class SplashScreenModel : BaseStateScreenModel<State, Event, Navigation>(State) {
     init {
         coroutineScope.launch {
             events.scan(state.value, ::reduce).collect(::updateState)
         }
 
         coroutineScope.launch {
-            // TODO: Show infos from backend or based on settings
-            delay(2000)
-            sendEvent(Event.DataLoaded("Hello, this is a very important message from the CompCardero team."))
+            delay(5000)
+            sendEvent(Event.ScreenAutoSwitch)
         }
     }
 
     private fun reduce(state: State, event: Event): State {
         return when (event) {
-            is Event.DataLoaded -> {
-                State.Content(event.infoText)
-            }
-
-            Event.ScreenClicked -> {
+            Event.ScreenAutoSwitch, Event.ScreenClicked -> {
                 navigate(Navigation.MainMenu)
                 state
             }

@@ -1,13 +1,10 @@
 package de.dbaelz.compcardero.ui.splash
 
 class SplashScreenContract {
-    sealed interface State {
-        object Loading : State
-        data class Content(val infoText: String) : State
-    }
+    object State
 
     sealed interface Event {
-        data class DataLoaded(val infoText: String) : Event
+        object ScreenAutoSwitch : Event
         object ScreenClicked : Event
     }
 

@@ -1,15 +1,11 @@
 package de.dbaelz.compcardero.ui.splash
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
@@ -53,30 +49,12 @@ class SplashScreen : Screen {
             null -> {}
         }
 
-        val state by screenModel.state.collectAsState()
-        when (val currentState = state) {
-            State.Loading -> Loading()
-            is State.Content -> Content(currentState.infoText) { screenModel.sendEvent(it) }
-        }
+        Content { screenModel.sendEvent(it) }
     }
 }
 
 @Composable
-private fun Loading() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(backgroundBrush),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(
-            color = colorResource(MR.colors.onPrimary)
-        )
-    }
-}
-
-@Composable
-private fun Content(infoText: String, sendEvent: (Event) -> Unit) {
+private fun Content(sendEvent: (Event) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -100,21 +78,6 @@ private fun Content(infoText: String, sendEvent: (Event) -> Unit) {
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )
-
-            if (infoText.isNotEmpty()) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .border(
-                            width = 2.dp,
-                            color = colorResource(MR.colors.onPrimary),
-                            shape = RoundedCornerShape(4.dp)
-                        ).padding(8.dp),
-                    text = infoText,
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Left
-                )
-            }
         }
     }
 }
