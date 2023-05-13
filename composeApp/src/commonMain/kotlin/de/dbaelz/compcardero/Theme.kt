@@ -6,6 +6,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Brush
 
 private val LightColors = lightColors(
     primary = md_theme_light_primary,
@@ -51,3 +52,12 @@ internal fun AppTheme(
         }
     )
 }
+
+val backgroundBrush: Brush
+    @Composable
+    get() = Brush.verticalGradient(
+        listOf(
+            MaterialTheme.colors.primary,
+            MaterialTheme.colors.secondary
+        )
+    )

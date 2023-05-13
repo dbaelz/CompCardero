@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TODO: See todo in Color.kt. Only use one source for colors -->
     <color name="primary">#00796B</color>
     <color name="secondary">#607D8B</color>
     <color name="onPrimary">#FFFFFF</color>

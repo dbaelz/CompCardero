@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -19,7 +20,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -28,6 +28,7 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.backgroundBrush
 import de.dbaelz.compcardero.getPlatformName
 import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
@@ -85,7 +86,7 @@ private fun Content(infoText: String, sendEvent: (Event) -> Unit) {
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides colorResource(MR.colors.onPrimary)
+            LocalContentColor provides MaterialTheme.colors.onPrimary
         ) {
             Text(
                 text = "${stringResource(MR.strings.splash_headline)} ${getPlatformName()}",
@@ -117,12 +118,3 @@ private fun Content(infoText: String, sendEvent: (Event) -> Unit) {
         }
     }
 }
-
-private val backgroundBrush: Brush
-    @Composable
-    get() = Brush.verticalGradient(
-        listOf(
-            colorResource(MR.colors.primary),
-            colorResource(MR.colors.secondary)
-        )
-    )
