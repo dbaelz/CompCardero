@@ -14,6 +14,7 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.backgroundBrush
+import de.dbaelz.compcardero.ui.endgame.EndGameScreen
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Event
 import de.dbaelz.compcardero.ui.game.GameScreenContract.State
 import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
@@ -25,9 +26,9 @@ class GameScreen : Screen {
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
-        when (navigationState) {
+        when (val navState = navigationState) {
             is GameScreenContract.Navigation.EndGame -> {
-                Navigator(MainMenuScreen())
+                Navigator(EndGameScreen(navState.winner, navState.loser))
                 return
             }
             null -> {}

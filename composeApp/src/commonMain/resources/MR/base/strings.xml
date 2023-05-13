@@ -9,4 +9,7 @@
     <string name="main_about">About</string>
 
     <string name="game_end_turn">End Turn</string>
+
+    <string name="endgame_health">Health:</string>
+    <string name="endgame_energy">Energy:</string>
 </resources>
