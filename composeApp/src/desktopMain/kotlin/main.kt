@@ -13,7 +13,7 @@ fun main() = application {
 
     Window(
         title = stringResource(MR.strings.app_name),
-        state = rememberWindowState(width = 800.dp, height = 600.dp),
+        state = rememberWindowState(width = 1024.dp, height = 768.dp),
         onCloseRequest = ::exitApplication,
     ) { App() }
 }
