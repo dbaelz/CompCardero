@@ -14,7 +14,9 @@ data class Player(
     fun startTurn() {
         energySlots = min(energySlots + gameConfig.energySlotsPerTurn, gameConfig.maxEnergySlots)
         energy = min(energy + gameConfig.energyPerTurn, energySlots)
-        drawCards(gameConfig.maxHandSize - hand.size)
+        if (hand.size < gameConfig.maxHandSize) {
+            drawCards(min(gameConfig.maxCardDrawPerTurn, gameConfig.maxHandSize - hand.size))
+        }
     }
 
     fun drawInitialCards(startHandSize: Int) {
