@@ -10,8 +10,10 @@ import androidx.compose.ui.graphics.Brush
 
 private val LightColors = lightColors(
     primary = md_theme_light_primary,
+    primaryVariant = md_theme_light_primary_variant,
     onPrimary = md_theme_light_onPrimary,
     secondary = md_theme_light_secondary,
+    secondaryVariant = md_theme_light_secondary_variant,
     onSecondary = md_theme_light_onSecondary,
     error = md_theme_light_error,
     onError = md_theme_light_onError,
