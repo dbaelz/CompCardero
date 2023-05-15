@@ -45,8 +45,9 @@ fun Board(
             .padding(4.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // TODO: Add opponent view
         PlayerView(opponent, null, null)
+
+        Spacer(Modifier.height(8.dp))
 
         if (isPlayerActive) {
             PlayerView(player, onCardSelected, onEndTurnClicked)
@@ -64,20 +65,28 @@ private fun PlayerView(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Deck(numberCards = playerStats.numberDeckCards)
 
-        HandCards(playerStats.hand, onCardSelected)
+        HandCards(
+            modifier = Modifier.weight(1f),
+            hand = playerStats.hand,
+            onCardSelected = onCardSelected
+        )
 
-        PlayerStatsView(playerStats, onEndTurnClicked)
+        PlayerStatsView(playerStats = playerStats, onEndTurnClicked = onEndTurnClicked)
     }
 }
 
 @Composable
-private fun HandCards(hand: List<GameCard>, onCardSelected: ((GameCard) -> Unit)?) {
+private fun HandCards(
+    modifier: Modifier = Modifier,
+    hand: List<GameCard>,
+    onCardSelected: ((GameCard) -> Unit)?
+) {
     Row(
-        modifier = Modifier.horizontalScroll(rememberScrollState()),
+        modifier = modifier.horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.Bottom
     ) {
