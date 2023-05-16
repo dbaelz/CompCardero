@@ -13,11 +13,9 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
-import de.dbaelz.compcardero.backgroundBrush
 import de.dbaelz.compcardero.ui.endgame.EndGameScreen
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Event
 import de.dbaelz.compcardero.ui.game.GameScreenContract.State
-import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
 
 class GameScreen : Screen {
     @Composable
@@ -31,6 +29,7 @@ class GameScreen : Screen {
                 Navigator(EndGameScreen(navState.winner, navState.loser))
                 return
             }
+
             null -> {}
         }
 
@@ -55,7 +54,7 @@ private fun Loading() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundBrush),
+            .background(MaterialTheme.colors.primary),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(

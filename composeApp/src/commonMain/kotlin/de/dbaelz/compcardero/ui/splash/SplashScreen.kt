@@ -1,12 +1,11 @@
 package de.dbaelz.compcardero.ui.splash
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -24,13 +23,10 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.backgroundBrush
 import de.dbaelz.compcardero.getPlatformName
 import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
 import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Navigation
-import de.dbaelz.compcardero.ui.splash.SplashScreenContract.State
-import dev.icerock.moko.resources.compose.colorResource
 import dev.icerock.moko.resources.compose.stringResource
 
 class SplashScreen : Screen {
@@ -58,7 +54,7 @@ private fun Content(sendEvent: (Event) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundBrush)
+            .background(MaterialTheme.colors.primary)
             .clickable { sendEvent(Event.ScreenClicked) },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)

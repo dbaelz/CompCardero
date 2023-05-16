@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -22,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.backgroundBrush
 import de.dbaelz.compcardero.data.PlayerStats
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -41,7 +41,7 @@ class EndGameScreen(private val winner: PlayerStats, private val loser: PlayerSt
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(backgroundBrush),
+                .background(MaterialTheme.colors.primary),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
         ) {

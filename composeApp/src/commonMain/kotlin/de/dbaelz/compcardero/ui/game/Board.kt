@@ -13,19 +13,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.backgroundBrush
+import de.dbaelz.compcardero.color_health_green
 import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.PlayerStats
 import dev.icerock.moko.resources.compose.stringResource
@@ -41,7 +40,7 @@ fun Board(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundBrush)
+            .background(MaterialTheme.colors.primary)
             .padding(4.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -103,13 +102,18 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
         modifier = Modifier
             .width(120.dp)
             .height(168.dp)
-            .clip(RoundedCornerShape(8.dp))
             .background(Color.LightGray)
-            .border(4.dp, Color.DarkGray, RoundedCornerShape(8.dp)),
+            .border(4.dp, Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("${playerStats.health}", color = Color.Black, fontSize = 32.sp)
+
+        Spacer(Modifier.height(8.dp))
+        Text(
+            "${playerStats.health}",
+            color = color_health_green,
+            fontSize = 32.sp
+        )
 
         Text(
             "${playerStats.energy}/${playerStats.energySlots}",
@@ -119,12 +123,15 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
 
         if (onEndTurnClicked != null) {
             Button(
-                modifier = Modifier.fillMaxWidth().height(32.dp),
+                modifier = Modifier.padding(12.dp).fillMaxWidth().height(32.dp),
                 onClick = onEndTurnClicked
             ) {
                 Text(
                     text = stringResource(MR.strings.game_end_turn),
-                    color = MaterialTheme.colors.onPrimary
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    color = MaterialTheme.colors.onPrimary,
+                    textAlign = TextAlign.Center,
+                    fontSize = 12.sp
                 )
             }
         } else {

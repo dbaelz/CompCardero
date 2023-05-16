@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.color_health_green
 import de.dbaelz.compcardero.data.GameCard
 import dev.icerock.moko.resources.compose.painterResource
 
@@ -54,7 +55,7 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
         ) {
             IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), Color.Red)
 
-            IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), Color.Green)
+            IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), color_health_green)
 
             IndicatorLabel(gameCard.energyCost, CircleShape, Color.Blue)
         }

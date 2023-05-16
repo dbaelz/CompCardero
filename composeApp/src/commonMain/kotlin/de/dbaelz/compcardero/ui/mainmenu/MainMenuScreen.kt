@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
-import de.dbaelz.compcardero.backgroundBrush
 import de.dbaelz.compcardero.ui.game.GameScreen
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -37,6 +36,7 @@ class MainMenuScreen : Screen {
                 Navigator(GameScreen())
                 return
             }
+
             MainMenuScreenContract.Navigation.Settings -> TODO()
             MainMenuScreenContract.Navigation.About -> TODO()
             null -> {}
@@ -46,7 +46,7 @@ class MainMenuScreen : Screen {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(backgroundBrush),
+                .background(MaterialTheme.colors.primary),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
         ) {
