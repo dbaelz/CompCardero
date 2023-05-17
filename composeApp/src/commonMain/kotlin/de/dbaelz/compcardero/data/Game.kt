@@ -1,12 +1,12 @@
 package de.dbaelz.compcardero.data
 
 import de.dbaelz.compcardero.MR
-import kotlin.math.abs
 
 class Game(
     private val player: Player,
     private val opponent: Player,
-    gameConfig: GameConfig = GameConfig()
+    private val opponentStrategy: Strategy = RandomStrategy(),
+    gameConfig: GameConfig = GameConfig(),
 ) {
     var isPlayerActive: Boolean = true
         private set
@@ -21,12 +21,15 @@ class Game(
     }
 
     fun playOpponentCards() {
-        val gameCard = opponent.hand
-            .filter { it.energyCost <= opponent.energy }
-            .minByOrNull { it.energyCost }
-        if (gameCard != null) {
-            val damageOpponent = opponent.playCard(gameCard)
-            player.health -= damageOpponent
+        while (true) {
+            val gameCard =
+                opponentStrategy.nextCard(opponent.hand, opponent.energy, opponent.energySlots)
+            if (gameCard != null) {
+                val damageOpponent = opponent.playCard(gameCard)
+                player.health -= damageOpponent
+            } else {
+                break
+            }
         }
         isPlayerActive = true
     }
