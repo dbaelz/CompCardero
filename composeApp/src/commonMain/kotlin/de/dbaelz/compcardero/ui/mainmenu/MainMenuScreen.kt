@@ -19,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import de.dbaelz.compcardero.ui.about.AboutScreen
 import de.dbaelz.compcardero.ui.game.GameScreen
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -31,14 +33,12 @@ class MainMenuScreen : Screen {
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
+        val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            MainMenuScreenContract.Navigation.NewGame -> {
-                Navigator(GameScreen())
-                return
-            }
-
+            MainMenuScreenContract.Navigation.NewGame -> navigator.push(GameScreen())
             MainMenuScreenContract.Navigation.Settings -> TODO()
-            MainMenuScreenContract.Navigation.About -> TODO()
+            MainMenuScreenContract.Navigation.About -> navigator.push(AboutScreen())
+
             null -> {}
         }
 

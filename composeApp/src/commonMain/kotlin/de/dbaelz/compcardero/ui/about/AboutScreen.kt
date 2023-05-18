@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.ui.splash
+package de.dbaelz.compcardero.ui.about
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,24 +22,20 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.getPlatformName
-import de.dbaelz.compcardero.ui.mainmenu.MainMenuScreen
-import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Event
-import de.dbaelz.compcardero.ui.splash.SplashScreenContract.Navigation
-import dev.icerock.moko.resources.compose.stringResource
+import de.dbaelz.compcardero.ui.about.AboutScreenContract.Event
 
-class SplashScreen : Screen {
+class AboutScreen : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { SplashScreenModel() }
+        val screenModel = rememberScreenModel { AboutScreenModel() }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            Navigation.MainMenu -> navigator.push(MainMenuScreen())
+            AboutScreenContract.Navigation.MainMenu -> navigator.pop()
             null -> {}
+
         }
 
         Content { screenModel.sendEvent(it) }
@@ -52,7 +48,7 @@ private fun Content(sendEvent: (Event) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.primary)
-            .clickable { sendEvent(Event.ScreenClicked) },
+            .clickable { sendEvent(Event.CloseClicked) },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
@@ -60,15 +56,9 @@ private fun Content(sendEvent: (Event) -> Unit) {
             LocalContentColor provides MaterialTheme.colors.onPrimary
         ) {
             Text(
-                text = "${stringResource(MR.strings.splash_headline)} ${getPlatformName()}",
+                text = "About",
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 20.sp,
-                textAlign = TextAlign.Center
-            )
-
-            Text(
-                text = stringResource(MR.strings.splash_subline),
-                fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )
         }
