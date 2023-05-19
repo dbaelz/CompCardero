@@ -15,7 +15,7 @@ data class GameConfig(
 )
 
 data class GameCard(
-    val id: Int,
+    val id: String,
     val attack: Int,
     val heal: Int,
     val energyCost: Int,
