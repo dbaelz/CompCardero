@@ -77,7 +77,7 @@ fun createNewGame(
     opponentName: String = "Opponent",
     gameConfig: GameConfig = GameConfig()
 ): Game {
-    val initialDeck = fantasyCardDeck
+    val initialDeck = fantasyCardDeck + fantasyCardDeck + fantasyCardDeck
 
     val player = Player(
         name = playerName,
