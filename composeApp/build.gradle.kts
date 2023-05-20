@@ -42,6 +42,8 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(libs.material.icons.core)
+                implementation(libs.material.icons.extended)
                 implementation(libs.moko.resources)
                 implementation(libs.moko.resources.compose)
                 implementation(libs.voyager.navigator)

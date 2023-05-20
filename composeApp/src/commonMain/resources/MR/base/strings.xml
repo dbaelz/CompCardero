@@ -12,4 +12,6 @@
 
     <string name="endgame_health">Health:</string>
     <string name="endgame_energy">Energy:</string>
+
+    <string name="settings_title">Settings</string>
 </resources>
