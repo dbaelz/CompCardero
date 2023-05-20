@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.color_cards_indicator_background
 import de.dbaelz.compcardero.color_health_green
 import de.dbaelz.compcardero.data.GameCard
 import dev.icerock.moko.resources.compose.painterResource
@@ -40,7 +41,7 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
             .width(120.dp)
             .height(168.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(4.dp, Color.Black, RoundedCornerShape(8.dp))
+            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
             .then(if (onCardSelected != null) Modifier.clickable { onCardSelected(gameCard) } else Modifier)
     ) {
         Image(
@@ -69,7 +70,7 @@ private fun IndicatorLabel(value: Int, shape: Shape, color: Color) {
             .size(32.dp)
             .clip(shape)
             .border(2.dp, color, shape)
-            .background(Color.Black),
+            .background(color_cards_indicator_background),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -88,7 +89,7 @@ fun Deck(modifier: Modifier = Modifier, numberCards: Int) {
             .width(120.dp)
             .height(168.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(4.dp, Color.Black, RoundedCornerShape(8.dp)),
+            .border(2.dp, Color.Black, RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
         Image(

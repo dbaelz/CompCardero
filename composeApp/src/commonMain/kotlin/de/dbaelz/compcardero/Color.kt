@@ -29,3 +29,4 @@ internal val md_theme_dark_onSurface = Color(0xFFFFE264)
 
 
 internal val color_health_green = Color(0xFF009933)
+internal val color_cards_indicator_background = Color(0xAA000000)
