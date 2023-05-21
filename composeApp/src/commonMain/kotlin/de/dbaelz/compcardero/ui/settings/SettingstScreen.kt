@@ -1,9 +1,10 @@
 package de.dbaelz.compcardero.ui.settings
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -47,42 +48,42 @@ class SettingsScreen : Screen {
 
         }
 
-        Content { screenModel.sendEvent(it) }
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(stringResource(MR.strings.settings_title)) },
+                    navigationIcon = {
+                        IconButton(onClick = { screenModel.sendEvent(Event.CloseClicked) }) {
+                            Icon(Icons.Filled.ArrowBack, null)
+                        }
+                    }
+                )
+            }
+        ) {
+            SettingsContent(it)
+        }
     }
 }
 
 @Composable
-private fun Content(sendEvent: (Event) -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(MR.strings.settings_title)) },
-                navigationIcon = {
-                    IconButton(onClick = { sendEvent(Event.CloseClicked) }) {
-                        Icon(Icons.Filled.ArrowBack, null)
-                    }
-                }
-            )
-        }
+private fun SettingsContent(paddingValues: PaddingValues) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.secondary)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
+        CompositionLocalProvider(
+            LocalContentColor provides MaterialTheme.colors.onPrimary
         ) {
-            CompositionLocalProvider(
-                LocalContentColor provides MaterialTheme.colors.onPrimary
-            ) {
-                Text(
-                    text = stringResource(MR.strings.settings_title),
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
+            Text(
+                text = stringResource(MR.strings.settings_title),
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }

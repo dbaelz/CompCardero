@@ -13,5 +13,8 @@
     <string name="endgame_health">Health:</string>
     <string name="endgame_energy">Energy:</string>
 
+    <string name="about_title">About</string>
+    <string name="about_github_link">https://github.com/dbaelz/CompCardero</string>
+
     <string name="settings_title">Settings</string>
 </resources>
