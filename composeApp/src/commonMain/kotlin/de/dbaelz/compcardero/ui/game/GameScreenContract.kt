@@ -3,11 +3,13 @@ package de.dbaelz.compcardero.ui.game
 import de.dbaelz.compcardero.data.Game
 import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.PlayerStats
+import dev.icerock.moko.resources.ImageResource
 
 class GameScreenContract {
     sealed interface State {
         object Loading : State
         data class Game(
+            val deckCard: ImageResource,
             val player: PlayerStats,
             val opponent: PlayerStats,
             val isPlayerActive: Boolean

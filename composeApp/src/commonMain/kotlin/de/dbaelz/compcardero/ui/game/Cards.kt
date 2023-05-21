@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,18 +29,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.color_cards_indicator_background
 import de.dbaelz.compcardero.color_health_green
 import de.dbaelz.compcardero.data.GameCard
+import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
+
+val CARD_WIDTH = 110.dp
+val CARD_HEIGHT = 165.dp
 
 @Composable
 fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((GameCard) -> Unit)?) {
     Box(
         modifier = modifier
-            .width(120.dp)
-            .height(168.dp)
+            .width(CARD_WIDTH)
+            .height(CARD_HEIGHT)
             .clip(RoundedCornerShape(8.dp))
             .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
             .then(if (onCardSelected != null) Modifier.clickable { onCardSelected(gameCard) } else Modifier)
@@ -50,16 +54,23 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
             modifier = Modifier.fillMaxSize(),
         )
 
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+        Column(
+            modifier = Modifier.fillMaxSize().padding(4.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.End
         ) {
-            IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), Color.Red)
-
-            IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), color_health_green)
-
             IndicatorLabel(gameCard.energyCost, CircleShape, Color.Blue)
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), Color.Red)
+
+                IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), color_health_green)
+            }
         }
+
     }
 }
 
@@ -83,17 +94,17 @@ private fun IndicatorLabel(value: Int, shape: Shape, color: Color) {
 }
 
 @Composable
-fun Deck(modifier: Modifier = Modifier, numberCards: Int) {
+fun Deck(modifier: Modifier = Modifier, deckCard: ImageResource, numberCards: Int) {
     Box(
         modifier = modifier
-            .width(120.dp)
-            .height(168.dp)
+            .width(CARD_WIDTH)
+            .height(CARD_HEIGHT)
             .clip(RoundedCornerShape(8.dp))
             .border(2.dp, Color.Black, RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = painterResource(imageResource = MR.images.deck_placeholder),
+            painter = painterResource(deckCard),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
         )

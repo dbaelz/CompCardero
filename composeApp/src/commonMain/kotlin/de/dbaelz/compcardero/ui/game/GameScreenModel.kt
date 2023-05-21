@@ -74,6 +74,6 @@ class GameScreenModel : BaseStateScreenModel<State, Event, Navigation>(State.Loa
 
     private fun createStateFromPlayerStats(): State {
         val playerStats = game.getPlayerStats()
-        return State.Game(playerStats.first, playerStats.second, game.isPlayerActive)
+        return State.Game(game.deckCard, playerStats.first, playerStats.second, game.isPlayerActive)
     }
 }

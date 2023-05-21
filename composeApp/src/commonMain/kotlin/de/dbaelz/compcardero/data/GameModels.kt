@@ -14,6 +14,8 @@ data class GameConfig(
     val maxEnergySlots: Int = 12
 )
 
+data class GameDeck(val deckCard: ImageResource, val cards: List<GameCard>)
+
 data class GameCard(
     val id: String,
     val attack: Int,

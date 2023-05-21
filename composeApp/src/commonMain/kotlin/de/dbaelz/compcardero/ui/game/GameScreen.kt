@@ -38,6 +38,7 @@ class GameScreen : Screen {
             State.Loading -> Loading()
             is State.Game -> {
                 Board(
+                    deckCard = currentState.deckCard,
                     player = currentState.player,
                     opponent = currentState.opponent,
                     isPlayerActive = currentState.isPlayerActive,

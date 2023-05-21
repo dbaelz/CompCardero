@@ -1,8 +1,10 @@
 package de.dbaelz.compcardero.data
 
-import de.dbaelz.compcardero.decks.fantasyCardDeck
+import de.dbaelz.compcardero.decks.fantasyGameDeck
+import dev.icerock.moko.resources.ImageResource
 
 class Game(
+    val deckCard: ImageResource,
     private val player: Player,
     private val opponent: Player,
     private val opponentStrategy: Strategy = RandomStrategy(),
@@ -77,7 +79,8 @@ fun createNewGame(
     opponentName: String = "Opponent",
     gameConfig: GameConfig = GameConfig()
 ): Game {
-    val initialDeck = fantasyCardDeck + fantasyCardDeck + fantasyCardDeck
+    // TODO: Only temporary. Will be obsolete when player can choose cards from deck
+    val initialDeck = fantasyGameDeck.cards + fantasyGameDeck.cards + fantasyGameDeck.cards
 
     val player = Player(
         name = playerName,
@@ -100,6 +103,7 @@ fun createNewGame(
     )
 
     return Game(
+        deckCard = fantasyGameDeck.deckCard,
         player = player,
         opponent = opponent,
         gameConfig = gameConfig

@@ -27,10 +27,12 @@ import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.color_health_green
 import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.PlayerStats
+import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun Board(
+    deckCard: ImageResource,
     player: PlayerStats,
     opponent: PlayerStats,
     isPlayerActive: Boolean,
@@ -44,20 +46,21 @@ fun Board(
             .padding(4.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        PlayerView(opponent, null, null)
+        PlayerView(deckCard, opponent, null, null)
 
         Spacer(Modifier.height(8.dp))
 
         if (isPlayerActive) {
-            PlayerView(player, onCardSelected, onEndTurnClicked)
+            PlayerView(deckCard, player, onCardSelected, onEndTurnClicked)
         } else {
-            PlayerView(player, null, null)
+            PlayerView(deckCard, player, null, null)
         }
     }
 }
 
 @Composable
 private fun PlayerView(
+    deckCard: ImageResource,
     playerStats: PlayerStats,
     onCardSelected: ((GameCard) -> Unit)?,
     onEndTurnClicked: (() -> Unit)?
@@ -66,7 +69,7 @@ private fun PlayerView(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Deck(numberCards = playerStats.numberDeckCards)
+        Deck(deckCard = deckCard, numberCards = playerStats.numberDeckCards)
 
         HandCards(
             modifier = Modifier.weight(1f),
@@ -100,8 +103,8 @@ private fun HandCards(
 private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> Unit)?) {
     Column(
         modifier = Modifier
-            .width(120.dp)
-            .height(168.dp)
+            .width(CARD_WIDTH)
+            .height(CARD_HEIGHT)
             .background(Color.LightGray)
             .border(4.dp, Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -123,7 +126,7 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
 
         if (onEndTurnClicked != null) {
             Button(
-                modifier = Modifier.padding(12.dp).fillMaxWidth().height(32.dp),
+                modifier = Modifier.padding(8.dp).fillMaxWidth().height(32.dp),
                 onClick = onEndTurnClicked
             ) {
                 Text(
