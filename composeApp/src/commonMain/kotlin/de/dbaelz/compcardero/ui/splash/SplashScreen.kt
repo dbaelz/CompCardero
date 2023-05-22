@@ -38,7 +38,7 @@ class SplashScreen : Screen {
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            Navigation.MainMenu -> navigator.push(MainMenuScreen())
+            Navigation.MainMenu -> navigator.replace(MainMenuScreen())
             null -> {}
         }
 
