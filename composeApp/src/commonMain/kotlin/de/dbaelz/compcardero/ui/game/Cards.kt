@@ -29,8 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.dbaelz.compcardero.color_cards_indicator_background
-import de.dbaelz.compcardero.color_health_green
+import de.dbaelz.compcardero.color_attack
+import de.dbaelz.compcardero.color_card_border
+import de.dbaelz.compcardero.color_energy
+import de.dbaelz.compcardero.color_health
+import de.dbaelz.compcardero.color_indicator_background
 import de.dbaelz.compcardero.data.GameCard
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
@@ -45,7 +48,7 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
             .width(CARD_WIDTH)
             .height(CARD_HEIGHT)
             .clip(RoundedCornerShape(8.dp))
-            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
+            .border(2.dp, color_card_border, RoundedCornerShape(8.dp))
             .then(if (onCardSelected != null) Modifier.clickable { onCardSelected(gameCard) } else Modifier)
     ) {
         Image(
@@ -59,15 +62,15 @@ fun Card(modifier: Modifier = Modifier, gameCard: GameCard, onCardSelected: ((Ga
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
         ) {
-            IndicatorLabel(gameCard.energyCost, CircleShape, Color.Blue)
+            IndicatorLabel(gameCard.energyCost, CircleShape, color_energy)
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), Color.Red)
+                IndicatorLabel(gameCard.attack, CutCornerShape(8.dp), color_attack)
 
-                IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), color_health_green)
+                IndicatorLabel(gameCard.heal, CutCornerShape(16.dp), color_health)
             }
         }
 
@@ -81,7 +84,7 @@ private fun IndicatorLabel(value: Int, shape: Shape, color: Color) {
             .size(32.dp)
             .clip(shape)
             .border(2.dp, color, shape)
-            .background(color_cards_indicator_background),
+            .background(color_indicator_background),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -100,7 +103,7 @@ fun Deck(modifier: Modifier = Modifier, deckCard: ImageResource, numberCards: In
             .width(CARD_WIDTH)
             .height(CARD_HEIGHT)
             .clip(RoundedCornerShape(8.dp))
-            .border(2.dp, Color.Black, RoundedCornerShape(8.dp)),
+            .border(2.dp, color_card_border, RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -113,8 +116,8 @@ fun Deck(modifier: Modifier = Modifier, deckCard: ImageResource, numberCards: In
             modifier = Modifier
                 .size(64.dp)
                 .clip(CircleShape)
-                .background(Color.DarkGray)
-                .border(2.dp, Color.Black, CircleShape),
+                .background(color_indicator_background)
+                .border(2.dp, color_card_border, CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Text(

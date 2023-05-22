@@ -13,18 +13,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.color_health_green
+import de.dbaelz.compcardero.color_card_border
+import de.dbaelz.compcardero.color_energy
+import de.dbaelz.compcardero.color_health
+import de.dbaelz.compcardero.color_indicator_background
 import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.PlayerStats
 import dev.icerock.moko.resources.ImageResource
@@ -105,8 +109,9 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
         modifier = Modifier
             .width(CARD_WIDTH)
             .height(CARD_HEIGHT)
-            .background(Color.LightGray)
-            .border(4.dp, Color.White),
+            .clip(RoundedCornerShape(8.dp))
+            .border(2.dp, color_card_border, RoundedCornerShape(8.dp))
+            .background(color_indicator_background),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -114,19 +119,19 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
         Spacer(Modifier.height(8.dp))
         Text(
             "${playerStats.health}",
-            color = color_health_green,
+            color = color_health,
             fontSize = 32.sp
         )
 
         Text(
             "${playerStats.energy}/${playerStats.energySlots}",
-            color = Color.Blue,
+            color = color_energy,
             fontSize = 32.sp
         )
 
         if (onEndTurnClicked != null) {
             Button(
-                modifier = Modifier.padding(8.dp).fillMaxWidth().height(32.dp),
+                modifier = Modifier.fillMaxWidth().height(32.dp),
                 onClick = onEndTurnClicked
             ) {
                 Text(

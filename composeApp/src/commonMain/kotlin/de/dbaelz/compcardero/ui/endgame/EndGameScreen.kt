@@ -15,7 +15,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.color_health
+import de.dbaelz.compcardero.color_indicator_background
 import de.dbaelz.compcardero.data.PlayerStats
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -56,11 +57,11 @@ class EndGameScreen(private val winner: PlayerStats, private val loser: PlayerSt
 private fun StatsRow(playerStats: PlayerStats, isWinner: Boolean = false) {
     Row(
         modifier = Modifier.fillMaxWidth(0.6f)
-            .background(if (isWinner) Color.Green else Color.Gray),
+            .background(if (isWinner) color_health else color_indicator_background),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides Color.Black
+            LocalContentColor provides MaterialTheme.colors.onPrimary
         ) {
             Text(
                 text = playerStats.name,
