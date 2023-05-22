@@ -52,7 +52,7 @@ class AboutScreen : Screen {
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            AboutScreenContract.Navigation.MainMenu -> navigator.pop()
+            AboutScreenContract.Navigation.Back -> navigator.pop()
             null -> {}
 
         }
@@ -62,7 +62,7 @@ class AboutScreen : Screen {
                 TopAppBar(
                     title = { Text(stringResource(MR.strings.about_title)) },
                     navigationIcon = {
-                        IconButton(onClick = { screenModel.sendEvent(Event.CloseClicked) }) {
+                        IconButton(onClick = { screenModel.sendEvent(Event.BackClicked) }) {
                             Icon(Icons.Filled.ArrowBack, null)
                         }
                     }

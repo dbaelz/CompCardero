@@ -18,8 +18,8 @@ class AboutScreenModel : BaseStateScreenModel<State, Event, Navigation>(State) {
 
     private fun reduce(state: State, event: Event): State {
         return when (event) {
-            Event.CloseClicked -> {
-                navigate(Navigation.MainMenu)
+            Event.BackClicked -> {
+                navigate(Navigation.Back)
                 state
             }
         }

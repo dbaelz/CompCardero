@@ -43,7 +43,7 @@ class SettingsScreen : Screen {
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            SettingsScreenContract.Navigation.MainMenu -> navigator.pop()
+            SettingsScreenContract.Navigation.Back -> navigator.pop()
             null -> {}
 
         }
@@ -53,7 +53,7 @@ class SettingsScreen : Screen {
                 TopAppBar(
                     title = { Text(stringResource(MR.strings.settings_title)) },
                     navigationIcon = {
-                        IconButton(onClick = { screenModel.sendEvent(Event.CloseClicked) }) {
+                        IconButton(onClick = { screenModel.sendEvent(Event.BackClicked) }) {
                             Icon(Icons.Filled.ArrowBack, null)
                         }
                     }
