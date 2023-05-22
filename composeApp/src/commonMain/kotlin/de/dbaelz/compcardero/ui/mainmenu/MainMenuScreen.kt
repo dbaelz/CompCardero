@@ -24,6 +24,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.ui.about.AboutScreen
 import de.dbaelz.compcardero.ui.game.GameScreen
 import de.dbaelz.compcardero.ui.settings.SettingsScreen
+import de.dbaelz.compcardero.ui.setupgame.SetupGameScreen
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -36,7 +37,7 @@ class MainMenuScreen : Screen {
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            MainMenuScreenContract.Navigation.NewGame -> navigator.push(GameScreen())
+            MainMenuScreenContract.Navigation.NewGame -> navigator.push(SetupGameScreen())
             MainMenuScreenContract.Navigation.Settings -> navigator.push(SettingsScreen())
             MainMenuScreenContract.Navigation.About -> navigator.push(AboutScreen())
 

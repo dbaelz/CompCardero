@@ -2,7 +2,8 @@ package de.dbaelz.compcardero.ui.game
 
 import cafe.adriel.voyager.core.model.coroutineScope
 import de.dbaelz.compcardero.data.Game
-import de.dbaelz.compcardero.data.createNewGame
+import de.dbaelz.compcardero.data.GameConfig
+import de.dbaelz.compcardero.data.GameDeck
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Event
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Navigation
@@ -12,7 +13,11 @@ import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 
 
-class GameScreenModel : BaseStateScreenModel<State, Event, Navigation>(State.Loading) {
+class GameScreenModel(
+    private val playerName: String,
+    private val gameConfig: GameConfig,
+    private val gameDeck: GameDeck
+) : BaseStateScreenModel<State, Event, Navigation>(State.Loading) {
     // TODO: Do it differently, e.g. with DI and inject a game instance
     private lateinit var game: Game
 
@@ -21,8 +26,18 @@ class GameScreenModel : BaseStateScreenModel<State, Event, Navigation>(State.Loa
             events.scan(state.value, ::reduce).collect(::updateState)
         }
 
+        // TODO: uUnnecessary right now. Remove loading state or change for local multiplayer
         coroutineScope.launch {
-            sendEvent(Event.GameInitialized(createNewGame()))
+            sendEvent(
+                Event.GameInitialized(
+                    Game.create(
+                        playerName = playerName,
+                        opponentName = "CompCardero Bot",
+                        gameConfig = gameConfig,
+                        gameDeck = gameDeck
+                    )
+                )
+            )
         }
     }
 

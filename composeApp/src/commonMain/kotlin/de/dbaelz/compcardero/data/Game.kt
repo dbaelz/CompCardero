@@ -1,6 +1,5 @@
 package de.dbaelz.compcardero.data
 
-import de.dbaelz.compcardero.decks.fantasyGameDeck
 import dev.icerock.moko.resources.ImageResource
 
 class Game(
@@ -72,40 +71,42 @@ class Game(
         health = this.health
     )
 
-}
+    companion object {
+        fun create(
+            playerName: String,
+            opponentName: String,
+            gameConfig: GameConfig,
+            gameDeck: GameDeck
+        ): Game {
+            // TODO: Temporary. Will be obsolete when player can choose a specific number cards from the deck
+            val initialDeck = gameDeck.cards + gameDeck.cards + gameDeck.cards
 
-fun createNewGame(
-    playerName: String = "You",
-    opponentName: String = "Opponent",
-    gameConfig: GameConfig = GameConfig()
-): Game {
-    // TODO: Only temporary. Will be obsolete when player can choose cards from deck
-    val initialDeck = fantasyGameDeck.cards + fantasyGameDeck.cards + fantasyGameDeck.cards
+            val player = Player(
+                name = playerName,
+                deck = initialDeck.shuffled().take(gameConfig.deckSize).toMutableList(),
+                hand = mutableListOf(),
+                health = gameConfig.startHealth,
+                energy = gameConfig.startEnergy,
+                energySlots = gameConfig.startEnergy,
+                gameConfig = gameConfig
+            )
 
-    val player = Player(
-        name = playerName,
-        deck = initialDeck.shuffled().take(gameConfig.deckSize).toMutableList(),
-        hand = mutableListOf(),
-        health = gameConfig.startHealth,
-        energy = gameConfig.startEnergy,
-        energySlots = gameConfig.startEnergy,
-        gameConfig = gameConfig
-    )
+            val opponent = Player(
+                name = opponentName,
+                deck = initialDeck.shuffled().take(gameConfig.deckSize).toMutableList(),
+                hand = mutableListOf(),
+                health = gameConfig.startHealth,
+                energy = gameConfig.startEnergy,
+                energySlots = gameConfig.startEnergy,
+                gameConfig = gameConfig
+            )
 
-    val opponent = Player(
-        name = opponentName,
-        deck = initialDeck.shuffled().take(gameConfig.deckSize).toMutableList(),
-        hand = mutableListOf(),
-        health = gameConfig.startHealth,
-        energy = gameConfig.startEnergy,
-        energySlots = gameConfig.startEnergy,
-        gameConfig = gameConfig
-    )
-
-    return Game(
-        deckCard = fantasyGameDeck.deckCard,
-        player = player,
-        opponent = opponent,
-        gameConfig = gameConfig
-    )
+            return Game(
+                deckCard = gameDeck.deckCard,
+                player = player,
+                opponent = opponent,
+                gameConfig = gameConfig
+            )
+        }
+    }
 }

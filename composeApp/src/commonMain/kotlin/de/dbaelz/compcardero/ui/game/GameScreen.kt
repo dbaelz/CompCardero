@@ -13,14 +13,20 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
+import de.dbaelz.compcardero.data.GameConfig
+import de.dbaelz.compcardero.data.GameDeck
 import de.dbaelz.compcardero.ui.endgame.EndGameScreen
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Event
 import de.dbaelz.compcardero.ui.game.GameScreenContract.State
 
-class GameScreen : Screen {
+class GameScreen(
+    private val playerName: String,
+    private val gameConfig: GameConfig,
+    private val gameDeck: GameDeck
+) : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { GameScreenModel() }
+        val screenModel = rememberScreenModel { GameScreenModel(playerName, gameConfig, gameDeck) }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
