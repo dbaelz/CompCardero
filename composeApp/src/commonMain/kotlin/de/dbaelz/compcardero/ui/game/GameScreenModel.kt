@@ -14,29 +14,28 @@ import kotlinx.coroutines.launch
 
 
 class GameScreenModel(
-    private val playerName: String,
-    private val gameConfig: GameConfig,
-    private val gameDeck: GameDeck
+    playerName: String,
+    gameConfig: GameConfig,
+    gameDeck: GameDeck
 ) : BaseStateScreenModel<State, Event, Navigation>(State.Loading) {
-    // TODO: Do it differently, e.g. with DI and inject a game instance
-    private lateinit var game: Game
+    private var game: Game
 
     init {
         coroutineScope.launch {
             events.scan(state.value, ::reduce).collect(::updateState)
         }
 
-        // TODO: uUnnecessary right now. Remove loading state or change for local multiplayer
+        game = Game.create(
+            playerName = playerName,
+            opponentName = "CompCardero Bot",
+            gameConfig = gameConfig,
+            gameDeck = gameDeck
+        )
+
+        // TODO: Unnecessary right now. Remove loading state or change for local multiplayer
         coroutineScope.launch {
             sendEvent(
-                Event.GameInitialized(
-                    Game.create(
-                        playerName = playerName,
-                        opponentName = "CompCardero Bot",
-                        gameConfig = gameConfig,
-                        gameDeck = gameDeck
-                    )
-                )
+                Event.GameInitialized(game)
             )
         }
     }
