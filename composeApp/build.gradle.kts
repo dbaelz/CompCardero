@@ -67,6 +67,7 @@ kotlin {
                 implementation(libs.androidx.activityCompose)
                 implementation(libs.compose.uitooling)
                 implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.koin.android)
             }
         }
 
