@@ -6,7 +6,8 @@ import dev.icerock.moko.resources.StringResource
 
 class SetupGameScreenContract {
     data class State(
-        val deckSize: TextContent<Int>, val startHandSize: TextContent<Int>,
+        val deckSize: TextContent<Int>,
+        val startHandSize: TextContent<Int>,
         val maxCardDrawPerTurn: TextContent<Int>,
         val maxHandSize: TextContent<Int>,
         val startHealth: TextContent<Int>,
@@ -15,9 +16,7 @@ class SetupGameScreenContract {
         val energySlotsPerTurn: TextContent<Int>,
         val maxEnergySlots: TextContent<Int>,
         val gameDeckNames: List<String>
-    ) {
-
-    }
+    )
 
     sealed interface Event {
         object BackClicked : Event

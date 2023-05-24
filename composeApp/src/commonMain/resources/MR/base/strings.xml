@@ -9,7 +9,19 @@
     <string name="main_about">About</string>
 
     <string name="setupgame_title">Setup Game</string>
+    <string name="setupgame_decks_header">Available Decks</string>
     <string name="setupgame_start_game">Start Game</string>
+    <string name="setupgame_textfield_playername">Player name</string>
+    <string name="setupgame_textfield_decksize">Deck size</string>
+    <string name="setupgame_textfield_starthandsize">Start hand size</string>
+    <string name="setupgame_textfield_maxcarddrawperturn">Cards drawn per turn</string>
+    <string name="setupgame_textfield_maxhandsize">Max hand size</string>
+    <string name="setupgame_textfield_starthealth">Start health</string>
+    <string name="setupgame_textfield_startenergy">Start energy</string>
+    <string name="setupgame_textfield_energyperturn">Energy per turn</string>
+    <string name="setupgame_textfield_energyslotsperturn">Energy slots per turn</string>
+    <string name="setupgame_textfield_maxenergyslots">Max energy slots</string>
+
 
     <string name="game_end_turn">End Turn</string>
 
