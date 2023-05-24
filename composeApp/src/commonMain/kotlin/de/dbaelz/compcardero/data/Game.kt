@@ -1,6 +1,7 @@
 package de.dbaelz.compcardero.data
 
 import dev.icerock.moko.resources.ImageResource
+import kotlin.math.ceil
 
 class Game(
     val deckCard: ImageResource,
@@ -79,7 +80,12 @@ class Game(
             gameDeck: GameDeck
         ): Game {
             // TODO: Temporary. Will be obsolete when player can choose a specific number cards from the deck
-            val initialDeck = gameDeck.cards + gameDeck.cards + gameDeck.cards
+            val initialDeck = mutableListOf<GameCard>()
+            val requiredCardsSize =
+                ceil((gameConfig.deckSize.toFloat() / gameDeck.cards.size.toFloat())).toInt()
+            repeat(requiredCardsSize) {
+                initialDeck.addAll(gameDeck.cards)
+            }
 
             val player = Player(
                 name = playerName,
