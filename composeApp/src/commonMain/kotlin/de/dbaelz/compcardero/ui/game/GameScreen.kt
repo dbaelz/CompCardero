@@ -12,7 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.data.GameConfig
 import de.dbaelz.compcardero.data.GameDeck
 import de.dbaelz.compcardero.ui.cards.Board
@@ -31,10 +32,10 @@ class GameScreen(
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
+        val navigator = LocalNavigator.currentOrThrow
         when (val navState = navigationState) {
             is GameScreenContract.Navigation.EndGame -> {
-                Navigator(EndGameScreen(navState.winner, navState.loser))
-                return
+                navigator.replace(EndGameScreen(navState.winner, navState.loser))
             }
 
             null -> {}
