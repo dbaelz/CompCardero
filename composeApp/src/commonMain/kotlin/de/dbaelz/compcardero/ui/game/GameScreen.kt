@@ -35,7 +35,13 @@ class GameScreen(
         val navigator = LocalNavigator.currentOrThrow
         when (val navState = navigationState) {
             is GameScreenContract.Navigation.EndGame -> {
-                navigator.replace(EndGameScreen(navState.winner, navState.loser))
+                navigator.replace(
+                    EndGameScreen(
+                        navState.endScreenImageRes,
+                        navState.winner,
+                        navState.loser
+                    )
+                )
             }
 
             null -> {}

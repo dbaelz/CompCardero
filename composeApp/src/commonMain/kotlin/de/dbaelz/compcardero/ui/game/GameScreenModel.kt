@@ -19,6 +19,8 @@ class GameScreenModel(
     gameDeck: GameDeck
 ) : BaseStateScreenModel<State, Event, Navigation>(State.Loading) {
     private var game: Game
+    private val deckCardRes = gameDeck.deckCard
+    private val endScreenImageRes = gameDeck.endScreenImageRes
 
     init {
         coroutineScope.launch {
@@ -59,7 +61,13 @@ class GameScreenModel(
                 coroutineScope.launch {
                     when (val result = game.determineWinner()) {
                         null -> sendEvent(Event.TurnEnded)
-                        else -> navigate(Navigation.EndGame(result.first, result.second))
+                        else -> navigate(
+                            Navigation.EndGame(
+                                endScreenImageRes,
+                                result.first,
+                                result.second
+                            )
+                        )
                     }
                 }
                 createStateFromPlayerStats()
@@ -79,7 +87,13 @@ class GameScreenModel(
             Event.OpponentTurnEnded -> {
                 when (val result = game.determineWinner()) {
                     null -> game.startTurn()
-                    else -> navigate(Navigation.EndGame(result.first, result.second))
+                    else -> navigate(
+                        Navigation.EndGame(
+                            endScreenImageRes,
+                            result.first,
+                            result.second
+                        )
+                    )
                 }
                 createStateFromPlayerStats()
             }
@@ -88,6 +102,6 @@ class GameScreenModel(
 
     private fun createStateFromPlayerStats(): State {
         val playerStats = game.getPlayerStats()
-        return State.Game(game.deckCard, playerStats.first, playerStats.second, game.isPlayerActive)
+        return State.Game(deckCardRes, playerStats.first, playerStats.second, game.isPlayerActive)
     }
 }

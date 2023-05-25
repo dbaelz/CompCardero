@@ -5,9 +5,10 @@ import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.GameDeck
 
 val fantasyGameDeck: GameDeck = GameDeck(
-    "Fantasy",
-    MR.images.deck_fantasy,
-    mutableListOf(
+    name = "Fantasy",
+    deckCard = MR.images.deck_fantasy,
+    endScreenImageRes = MR.images.endscreen_fantasy,
+    cards = mutableListOf(
         GameCard("orc_armored_1", 1, 0, 1, MR.images.orc_armored_1),
 
         GameCard("human_male_armor", 2, 0, 2, MR.images.human_male_armor),

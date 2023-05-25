@@ -44,13 +44,19 @@ import de.dbaelz.compcardero.color_indicator_background
 import de.dbaelz.compcardero.data.PlayerStats
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Event
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Navigation
+import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
-class EndGameScreen(private val winner: PlayerStats, private val loser: PlayerStats) : Screen {
+class EndGameScreen(
+    private val endScreenImageRes: ImageResource,
+    private val winner: PlayerStats,
+    private val loser: PlayerStats
+) : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { EndGameScreenModel(winner, loser) }
+        val screenModel =
+            rememberScreenModel { EndGameScreenModel(endScreenImageRes, winner, loser) }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
@@ -81,7 +87,7 @@ class EndGameScreen(private val winner: PlayerStats, private val loser: PlayerSt
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
                 ) {
-                    Trophy(maxImageSize, state.winner.name)
+                    Trophy(state.endScreenImageRes, maxImageSize, state.winner.name)
 
                     StatsRow(state.winner, true)
 
@@ -93,12 +99,12 @@ class EndGameScreen(private val winner: PlayerStats, private val loser: PlayerSt
 }
 
 @Composable
-private fun Trophy(maxSize: Dp, playerName: String) {
+private fun Trophy(endScreenImageRes: ImageResource, maxSize: Dp, playerName: String) {
     Box(
         contentAlignment = Alignment.TopCenter
     ) {
         Image(
-            painter = painterResource(imageResource = MR.images.trophy),
+            painter = painterResource(imageResource = endScreenImageRes),
             contentDescription = null,
             modifier = Modifier.size(maxSize).clip(RoundedCornerShape(8.dp)),
         )

@@ -6,13 +6,14 @@ import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Event
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Navigation
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.State
+import dev.icerock.moko.resources.ImageResource
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 
 
 class EndGameScreenModel(
-    winner: PlayerStats, loser: PlayerStats
-) : BaseStateScreenModel<State, Event, Navigation>(State(winner, loser)) {
+    endScreenImageRes: ImageResource, winner: PlayerStats, loser: PlayerStats
+) : BaseStateScreenModel<State, Event, Navigation>(State(endScreenImageRes, winner, loser)) {
     init {
         coroutineScope.launch {
             events.scan(state.value, ::reduce).collect(::updateState)

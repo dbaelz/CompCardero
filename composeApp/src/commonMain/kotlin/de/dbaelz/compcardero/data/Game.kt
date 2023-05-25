@@ -1,10 +1,8 @@
 package de.dbaelz.compcardero.data
 
-import dev.icerock.moko.resources.ImageResource
 import kotlin.math.ceil
 
 class Game(
-    val deckCard: ImageResource,
     private val player: Player,
     private val opponent: Player,
     private val opponentStrategy: Strategy = RandomStrategy(),
@@ -108,7 +106,6 @@ class Game(
             )
 
             return Game(
-                deckCard = gameDeck.deckCard,
                 player = player,
                 opponent = opponent,
                 gameConfig = gameConfig

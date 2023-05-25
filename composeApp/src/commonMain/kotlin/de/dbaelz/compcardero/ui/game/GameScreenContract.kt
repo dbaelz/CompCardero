@@ -30,6 +30,10 @@ interface GameScreenContract {
     }
 
     sealed interface Navigation {
-        data class EndGame(val winner: PlayerStats, val loser: PlayerStats) : Navigation
+        data class EndGame(
+            val endScreenImageRes: ImageResource,
+            val winner: PlayerStats,
+            val loser: PlayerStats
+        ) : Navigation
     }
 }
