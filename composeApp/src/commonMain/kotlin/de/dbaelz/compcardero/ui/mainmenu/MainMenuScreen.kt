@@ -76,17 +76,17 @@ private fun Menu(menuItems: List<MenuItem>, onMenuItemClick: (Event) -> Unit) {
                 modifier = Modifier
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { onMenuItemClick(it.event) },
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = it.icon,
-                    contentDescription = null,
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    contentDescription = null
                 )
 
                 Text(
                     text = stringResource(it.text),
+                    modifier = Modifier.weight(1f, false),
                     color = MaterialTheme.colors.onPrimary,
                     fontSize = 32.sp,
                     textAlign = TextAlign.Center
