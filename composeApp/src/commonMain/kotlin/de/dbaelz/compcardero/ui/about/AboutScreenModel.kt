@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 
 
-class AboutScreenModel : BaseStateScreenModel<State, Event, Navigation>(State) {
+class AboutScreenModel(
+    platformName: String
+) : BaseStateScreenModel<State, Event, Navigation>(State(platformName)) {
     init {
         coroutineScope.launch {
             events.scan(state.value, ::reduce).collect(::updateState)

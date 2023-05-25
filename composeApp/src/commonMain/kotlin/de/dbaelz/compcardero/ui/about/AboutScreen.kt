@@ -1,10 +1,13 @@
 package de.dbaelz.compcardero.ui.about
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -40,13 +43,17 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.color_card_border
+import de.dbaelz.compcardero.decks.fantasyGameDeck
+import de.dbaelz.compcardero.getPlatformName
 import de.dbaelz.compcardero.ui.about.AboutScreenContract.Event
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
 class AboutScreen : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { AboutScreenModel() }
+        val screenModel = rememberScreenModel { AboutScreenModel(getPlatformName()) }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
@@ -57,6 +64,7 @@ class AboutScreen : Screen {
 
         }
 
+        val state by screenModel.state.collectAsState()
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -69,61 +77,76 @@ class AboutScreen : Screen {
                 )
             }
         ) {
-            AboutContent(it)
+            AboutContent(it, state.platformName)
         }
     }
 }
 
 @Composable
-private fun AboutContent(paddingValues: PaddingValues) {
-    Column(
+private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .background(MaterialTheme.colors.secondary)
-            .padding(16.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .border(2.dp, MaterialTheme.colors.onSecondary, RoundedCornerShape(8.dp))
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
+            .background(MaterialTheme.colors.secondary),
+        contentAlignment = Alignment.Center
     ) {
-        CompositionLocalProvider(
-            LocalContentColor provides MaterialTheme.colors.onPrimary
+        Image(
+            painter = painterResource(imageResource = fantasyGameDeck.deckCard),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxHeight(0.8f)
+                .clip(RoundedCornerShape(16.dp)),
+            alpha = 0.3f
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .border(2.dp, MaterialTheme.colors.onSecondary, RoundedCornerShape(8.dp))
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
         ) {
-            Text(
-                text = stringResource(MR.strings.app_name),
-                fontWeight = FontWeight.ExtraBold,
-                fontSize = 32.sp,
-                textAlign = TextAlign.Center
-            )
+            CompositionLocalProvider(
+                LocalContentColor provides MaterialTheme.colors.onPrimary
+            ) {
+                Text(
+                    text = stringResource(MR.strings.splash_headline) + " $platformName",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 32.sp,
+                    textAlign = TextAlign.Center
+                )
 
-            Text(
-                text = stringResource(MR.strings.splash_subline),
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center
-            )
+                Text(
+                    text = stringResource(MR.strings.splash_subline),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center
+                )
 
-            val githubText = buildAnnotatedString {
-                append(stringResource(MR.strings.about_github_text))
-                addStyle(
-                    style = SpanStyle(
-                        color = MaterialTheme.colors.onPrimary,
-                        fontSize = 18.sp,
-                        textDecoration = TextDecoration.Underline
-                    ),
-                    start = 0,
-                    end = this.length
+                val githubText = buildAnnotatedString {
+                    append(stringResource(MR.strings.about_github_text))
+                    addStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colors.onPrimary,
+                            fontSize = 18.sp,
+                            textDecoration = TextDecoration.Underline
+                        ),
+                        start = 0,
+                        end = this.length
+                    )
+                }
+                val uriHandler = LocalUriHandler.current
+                val githubLink = stringResource(MR.strings.about_github_link)
+                ClickableText(
+                    text = githubText,
+                    onClick = {
+                        uriHandler.openUri(githubLink)
+                    }
                 )
             }
-            val uriHandler = LocalUriHandler.current
-            val githubLink = stringResource(MR.strings.about_github_link)
-            ClickableText(
-                text = githubText,
-                onClick = {
-                    uriHandler.openUri(githubLink)
-                }
-            )
         }
     }
 }

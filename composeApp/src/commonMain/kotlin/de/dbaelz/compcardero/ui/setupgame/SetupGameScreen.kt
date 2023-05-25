@@ -78,6 +78,7 @@ class SetupGameScreen : Screen {
 
         val state by screenModel.state.collectAsState()
 
+        // TODO: Use a state holder and extract it
         var playerName by rememberSaveable { mutableStateOf("") }
         var deckSize by rememberSaveable { mutableStateOf(state.deckSize.value) }
         var startHandSize by rememberSaveable { mutableStateOf(state.startHandSize.value) }
