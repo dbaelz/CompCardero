@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.ui.game
+package de.dbaelz.compcardero.ui.cards
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

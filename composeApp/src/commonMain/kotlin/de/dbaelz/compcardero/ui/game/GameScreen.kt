@@ -15,6 +15,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import de.dbaelz.compcardero.data.GameConfig
 import de.dbaelz.compcardero.data.GameDeck
+import de.dbaelz.compcardero.ui.cards.Board
 import de.dbaelz.compcardero.ui.endgame.EndGameScreen
 import de.dbaelz.compcardero.ui.game.GameScreenContract.Event
 import de.dbaelz.compcardero.ui.game.GameScreenContract.State

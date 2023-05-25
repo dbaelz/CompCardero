@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -43,10 +42,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.color_card_border
-import de.dbaelz.compcardero.decks.fantasyGameDeck
 import de.dbaelz.compcardero.getPlatformName
 import de.dbaelz.compcardero.ui.about.AboutScreenContract.Event
+import de.dbaelz.compcardero.ui.cards.TeaserCards
+import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -91,14 +90,7 @@ private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
             .background(MaterialTheme.colors.secondary),
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            painter = painterResource(imageResource = fantasyGameDeck.deckCard),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxHeight(0.8f)
-                .clip(RoundedCornerShape(16.dp)),
-            alpha = 0.3f
-        )
+        TeaserCards(0.85f, alpha = 0.2f)
 
         Column(
             modifier = Modifier
@@ -149,4 +141,14 @@ private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
             }
         }
     }
+}
+
+@Composable
+private fun BackgroundCard(imageResource: ImageResource) {
+    Image(
+        painter = painterResource(imageResource = imageResource),
+        contentDescription = null,
+        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
+        alpha = 0.3f
+    )
 }
