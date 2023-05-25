@@ -48,7 +48,7 @@ class SetupGameScreenModel(
                 when (validationResult) {
                     is ValidationResult.Success -> {
                         navigate(Navigation.Game(
-                            event.playerName,
+                            event.playerName.ifEmpty { "Player" },
                             validationResult.gameConfig,
                             gameDecks.first { it.name == event.gameDeckName }
                         ))

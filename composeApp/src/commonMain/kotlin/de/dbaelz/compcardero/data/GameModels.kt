@@ -7,7 +7,7 @@ data class GameConfig(
     val startHandSize: Int = 3,
     val maxCardDrawPerTurn: Int = 1,
     val maxHandSize: Int = 5,
-    val startHealth: Int = 20,
+    val startHealth: Int = -1,
     val startEnergy: Int = 3,
     val energyPerTurn: Int = 2,
     val energySlotsPerTurn: Int = 1,

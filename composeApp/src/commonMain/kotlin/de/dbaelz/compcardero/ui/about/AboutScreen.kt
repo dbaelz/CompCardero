@@ -142,13 +142,3 @@ private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
         }
     }
 }
-
-@Composable
-private fun BackgroundCard(imageResource: ImageResource) {
-    Image(
-        painter = painterResource(imageResource = imageResource),
-        contentDescription = null,
-        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
-        alpha = 0.3f
-    )
-}

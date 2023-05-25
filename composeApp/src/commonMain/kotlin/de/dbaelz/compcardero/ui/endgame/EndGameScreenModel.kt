@@ -21,7 +21,8 @@ class EndGameScreenModel(
 
     private fun reduce(state: State, event: Event): State {
         return when (event) {
-            else -> {
+            Event.BackClicked -> {
+                navigate(Navigation.Back)
                 state
             }
         }
