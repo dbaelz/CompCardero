@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
@@ -115,18 +116,28 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+        Text(
+            text = playerStats.name,
+            modifier = Modifier.fillMaxWidth(0.8f)
+                .padding(vertical = 4.dp)
+                .align(Alignment.CenterHorizontally),
+            color = MaterialTheme.colors.onPrimary,
+            minLines = 1,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center,
+        )
 
-        Spacer(Modifier.height(8.dp))
         Text(
             "${playerStats.health}",
             color = color_health,
-            fontSize = 32.sp
+            fontSize = 28.sp
         )
 
         Text(
             "${playerStats.energy}/${playerStats.energySlots}",
             color = color_energy,
-            fontSize = 32.sp
+            fontSize = 28.sp
         )
 
         if (onEndTurnClicked != null) {

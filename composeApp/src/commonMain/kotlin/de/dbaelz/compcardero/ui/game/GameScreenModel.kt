@@ -29,7 +29,7 @@ class GameScreenModel(
 
         game = Game.create(
             playerName = playerName,
-            opponentName = "CompCardero Bot",
+            opponentName = "Bot",
             gameConfig = gameConfig,
             gameDeck = gameDeck
         )
