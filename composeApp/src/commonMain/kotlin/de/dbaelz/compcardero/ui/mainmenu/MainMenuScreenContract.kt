@@ -1,6 +1,6 @@
 package de.dbaelz.compcardero.ui.mainmenu
 
-import dev.icerock.moko.resources.ImageResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import dev.icerock.moko.resources.StringResource
 
 interface MainMenuScreenContract {
@@ -19,7 +19,7 @@ interface MainMenuScreenContract {
 }
 
 data class MenuItem(
-    val icon: ImageResource?,
+    val icon: ImageVector,
     val text: StringResource,
     val event: MainMenuScreenContract.Event
 )

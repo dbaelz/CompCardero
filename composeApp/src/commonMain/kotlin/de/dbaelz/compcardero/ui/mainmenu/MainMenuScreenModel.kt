@@ -1,5 +1,9 @@
 package de.dbaelz.compcardero.ui.mainmenu
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.PlayCircleFilled
+import androidx.compose.material.icons.filled.Settings
 import cafe.adriel.voyager.core.model.coroutineScope
 import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
@@ -37,9 +41,8 @@ class MainMenuScreenModel : BaseStateScreenModel<State, Event, Navigation>(State
     }
 }
 
-private val mainMenuItems = listOf<MenuItem>(
-    // TODO: Add icon images with ImageResource
-    MenuItem(null, MR.strings.main_new_game, Event.NewGameClicked),
-    MenuItem(null, MR.strings.main_settings, Event.SettingsClicked),
-    MenuItem(null, MR.strings.main_about, Event.AboutClicked)
+private val mainMenuItems = listOf(
+    MenuItem(Icons.Filled.PlayCircleFilled, MR.strings.main_new_game, Event.NewGameClicked),
+    MenuItem(Icons.Filled.Settings, MR.strings.main_settings, Event.SettingsClicked),
+    MenuItem(Icons.Filled.Info, MR.strings.main_about, Event.AboutClicked)
 )
