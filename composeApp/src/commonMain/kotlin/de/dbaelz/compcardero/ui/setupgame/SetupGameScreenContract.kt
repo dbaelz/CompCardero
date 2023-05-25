@@ -4,7 +4,7 @@ import de.dbaelz.compcardero.data.GameConfig
 import de.dbaelz.compcardero.data.GameDeck
 import dev.icerock.moko.resources.StringResource
 
-class SetupGameScreenContract {
+interface SetupGameScreenContract {
     data class State(
         val deckSize: TextContent<Int>,
         val startHandSize: TextContent<Int>,

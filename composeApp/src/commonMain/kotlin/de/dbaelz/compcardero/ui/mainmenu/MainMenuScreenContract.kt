@@ -3,7 +3,7 @@ package de.dbaelz.compcardero.ui.mainmenu
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.StringResource
 
-class MainMenuScreenContract {
+interface MainMenuScreenContract {
     data class State(val menuItems: List<MenuItem>)
     sealed interface Event {
         object NewGameClicked : Event

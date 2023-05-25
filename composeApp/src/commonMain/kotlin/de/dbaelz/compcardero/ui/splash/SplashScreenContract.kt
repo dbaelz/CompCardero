@@ -1,6 +1,6 @@
 package de.dbaelz.compcardero.ui.splash
 
-class SplashScreenContract {
+interface SplashScreenContract {
     object State
 
     sealed interface Event {

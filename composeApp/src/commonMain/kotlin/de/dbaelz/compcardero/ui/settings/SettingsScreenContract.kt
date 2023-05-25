@@ -1,6 +1,6 @@
 package de.dbaelz.compcardero.ui.settings
 
-class SettingsScreenContract {
+interface SettingsScreenContract {
     object State
 
     sealed interface Event {

@@ -5,7 +5,7 @@ import de.dbaelz.compcardero.data.GameCard
 import de.dbaelz.compcardero.data.PlayerStats
 import dev.icerock.moko.resources.ImageResource
 
-class GameScreenContract {
+interface GameScreenContract {
     sealed interface State {
         object Loading : State
         data class Game(
