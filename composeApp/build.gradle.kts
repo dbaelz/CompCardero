@@ -138,8 +138,17 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "de.dbaelz.compcardero"
+            packageName = "CompCardero"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("package_icon/icon.icns"))
+            }
+            windows {
+                iconFile.set(project.file("package_icon/icon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("package_icon/icon.png"))
+            }
         }
     }
 }
