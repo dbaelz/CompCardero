@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.buildConfig)
 }
 
+project.version = "1.0.0"
+
 kotlin {
     android {
         compilations.all {
@@ -25,7 +27,7 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        version = "1.0.0"
+        version = project.version.toString()
         summary = "CompCardero is a simple card game built with Kotlin Multiplatform and Compose"
         homepage = "https://github.com/dbaelz/CompCardero"
         ios.deploymentTarget = "11.0"
@@ -112,7 +114,7 @@ android {
 
         applicationId = "de.dbaelz.compcardero"
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = project.version.toString()
     }
     sourceSets["main"].apply {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -139,7 +141,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "CompCardero"
-            packageVersion = "1.0.0"
+            packageVersion = project.version.toString()
             macOS {
                 iconFile.set(project.file("package_icon/icon.icns"))
             }
@@ -158,6 +160,7 @@ multiplatformResources {
 }
 
 buildConfig {
-  // BuildConfig configuration here.
-  // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
+    packageName("de.dbaelz.compcardero.config")
+
+    buildConfigField("String", "APP_VERSION", provider { "\"${project.version}\"" })
 }

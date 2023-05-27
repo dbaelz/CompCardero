@@ -1,7 +1,7 @@
 package de.dbaelz.compcardero.ui.about
 
 class AboutScreenContract {
-    data class State(val platformName: String)
+    data class State(val platformName: String, val appVersion: String)
 
     sealed interface Event {
         object BackClicked : Event

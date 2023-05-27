@@ -1,6 +1,5 @@
 package de.dbaelz.compcardero.ui.about
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -45,8 +44,6 @@ import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.getPlatformName
 import de.dbaelz.compcardero.ui.about.AboutScreenContract.Event
 import de.dbaelz.compcardero.ui.cards.TeaserCards
-import dev.icerock.moko.resources.ImageResource
-import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
 class AboutScreen : Screen {
@@ -76,13 +73,13 @@ class AboutScreen : Screen {
                 )
             }
         ) {
-            AboutContent(it, state.platformName)
+            AboutContent(it, state.platformName, state.appVersion)
         }
     }
 }
 
 @Composable
-private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
+private fun AboutContent(paddingValues: PaddingValues, platformName: String, appVersion: String) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -114,6 +111,11 @@ private fun AboutContent(paddingValues: PaddingValues, platformName: String) {
 
                 Text(
                     text = stringResource(MR.strings.splash_subline),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "Version $appVersion",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
