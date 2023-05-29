@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.data
+package de.dbaelz.compcardero.data.game
 
 abstract class Strategy {
     abstract fun nextCard(cards: List<GameCard>, energy: Int, energySlots: Int): GameCard?

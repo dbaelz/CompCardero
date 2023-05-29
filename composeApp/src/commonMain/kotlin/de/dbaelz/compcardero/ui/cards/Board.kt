@@ -30,8 +30,8 @@ import de.dbaelz.compcardero.color_card_border
 import de.dbaelz.compcardero.color_energy
 import de.dbaelz.compcardero.color_health
 import de.dbaelz.compcardero.color_indicator_background
-import de.dbaelz.compcardero.data.GameCard
-import de.dbaelz.compcardero.data.PlayerStats
+import de.dbaelz.compcardero.data.game.GameCard
+import de.dbaelz.compcardero.data.game.PlayerStats
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.stringResource
 

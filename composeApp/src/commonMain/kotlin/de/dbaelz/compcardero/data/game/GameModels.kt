@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.data
+package de.dbaelz.compcardero.data.game
 
 import dev.icerock.moko.resources.ImageResource
 

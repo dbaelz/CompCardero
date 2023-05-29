@@ -1,8 +1,8 @@
 package de.dbaelz.compcardero.decks
 
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.data.GameCard
-import de.dbaelz.compcardero.data.GameDeck
+import de.dbaelz.compcardero.data.game.GameCard
+import de.dbaelz.compcardero.data.game.GameDeck
 
 val fantasyGameDeck: GameDeck = GameDeck(
     name = "Fantasy",

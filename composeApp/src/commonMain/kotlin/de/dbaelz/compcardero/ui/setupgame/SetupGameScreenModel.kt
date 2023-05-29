@@ -1,8 +1,8 @@
 package de.dbaelz.compcardero.ui.setupgame
 
 import cafe.adriel.voyager.core.model.coroutineScope
-import de.dbaelz.compcardero.data.GameConfig
-import de.dbaelz.compcardero.data.GameDeck
+import de.dbaelz.compcardero.data.game.GameConfig
+import de.dbaelz.compcardero.data.game.GameDeck
 import de.dbaelz.compcardero.data.ValidateGameSettings
 import de.dbaelz.compcardero.data.ValidationResult
 import de.dbaelz.compcardero.ui.BaseStateScreenModel

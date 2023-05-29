@@ -1,8 +1,8 @@
 package de.dbaelz.compcardero.ui.game
 
-import de.dbaelz.compcardero.data.Game
-import de.dbaelz.compcardero.data.GameCard
-import de.dbaelz.compcardero.data.PlayerStats
+import de.dbaelz.compcardero.data.game.Game
+import de.dbaelz.compcardero.data.game.GameCard
+import de.dbaelz.compcardero.data.game.PlayerStats
 import dev.icerock.moko.resources.ImageResource
 
 interface GameScreenContract {

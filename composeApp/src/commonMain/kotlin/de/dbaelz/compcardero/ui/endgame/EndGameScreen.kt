@@ -41,7 +41,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.color_indicator_background
-import de.dbaelz.compcardero.data.PlayerStats
+import de.dbaelz.compcardero.data.game.PlayerStats
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Event
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Navigation
 import dev.icerock.moko.resources.ImageResource

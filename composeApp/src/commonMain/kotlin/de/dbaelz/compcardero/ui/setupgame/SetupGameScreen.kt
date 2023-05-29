@@ -43,7 +43,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.data.GameConfig
+import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.decks.fantasyGameDeck
 import de.dbaelz.compcardero.ui.game.GameScreen
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Event

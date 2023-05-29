@@ -1,5 +1,7 @@
 package de.dbaelz.compcardero.data
 
+import de.dbaelz.compcardero.data.game.GameConfig
+
 interface ValidateGameSettings {
     operator fun invoke(
         deckSize: Int,

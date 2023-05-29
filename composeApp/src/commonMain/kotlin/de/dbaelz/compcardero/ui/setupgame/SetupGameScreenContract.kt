@@ -1,7 +1,7 @@
 package de.dbaelz.compcardero.ui.setupgame
 
-import de.dbaelz.compcardero.data.GameConfig
-import de.dbaelz.compcardero.data.GameDeck
+import de.dbaelz.compcardero.data.game.GameConfig
+import de.dbaelz.compcardero.data.game.GameDeck
 import dev.icerock.moko.resources.StringResource
 
 interface SetupGameScreenContract {
