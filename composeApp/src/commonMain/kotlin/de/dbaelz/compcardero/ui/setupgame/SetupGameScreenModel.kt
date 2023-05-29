@@ -3,7 +3,7 @@ package de.dbaelz.compcardero.ui.setupgame
 import cafe.adriel.voyager.core.model.coroutineScope
 import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.data.game.GameDeck
-import de.dbaelz.compcardero.data.ValidateGameSettings
+import de.dbaelz.compcardero.data.ValidateGameConfiguration
 import de.dbaelz.compcardero.data.ValidationResult
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Event
@@ -21,7 +21,7 @@ class SetupGameScreenModel(
     private val gameDecks: List<GameDeck>
 ) : BaseStateScreenModel<State, Event, Navigation>(createInitialState(gameConfig, gameDecks)),
     KoinComponent {
-    private val validateGameSettings: ValidateGameSettings by inject()
+    private val validateGameConfiguration: ValidateGameConfiguration by inject()
 
     init {
         coroutineScope.launch {
@@ -33,7 +33,7 @@ class SetupGameScreenModel(
         return when (event) {
             is Event.StartGame -> {
                 // TODO: Validate input. Navigate to GameScreen when valid, otherwise show errors
-                val validationResult = validateGameSettings.invoke(
+                val validationResult = validateGameConfiguration.invoke(
                     deckSize = event.deckSize,
                     startHandSize = event.startHandSize,
                     maxCardDrawPerTurn = event.maxCardDrawPerTurn,

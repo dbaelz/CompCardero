@@ -2,7 +2,7 @@ package de.dbaelz.compcardero.data
 
 import de.dbaelz.compcardero.data.game.GameConfig
 
-interface ValidateGameSettings {
+interface ValidateGameConfiguration {
     operator fun invoke(
         deckSize: Int,
         startHandSize: Int,
@@ -16,7 +16,7 @@ interface ValidateGameSettings {
     ): ValidationResult
 }
 
-class ValidateGameSettingsImpl : ValidateGameSettings {
+class ValidateGameConfigurationImpl : ValidateGameConfiguration {
     override fun invoke(
         deckSize: Int,
         startHandSize: Int,
