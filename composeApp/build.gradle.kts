@@ -53,6 +53,8 @@ kotlin {
                 implementation(libs.napier)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.multiplatformSettings)
+                implementation(libs.multiplatformSettingsNoArg)
+                implementation(libs.multiplatformSettingsSerialization)
                 implementation(libs.koin.core)
             }
         }

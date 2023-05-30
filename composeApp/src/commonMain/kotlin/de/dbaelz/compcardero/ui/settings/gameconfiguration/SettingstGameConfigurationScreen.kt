@@ -1,4 +1,4 @@
-package de.dbaelz.compcardero.ui.settings
+package de.dbaelz.compcardero.ui.settings.gameconfiguration
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LocalContentColor
@@ -32,22 +31,22 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
-import de.dbaelz.compcardero.ui.settings.SettingsScreenContract.Event
-import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreen
+import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Event
+import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Navigation
 import dev.icerock.moko.resources.compose.stringResource
 
-class SettingsScreen : Screen {
+class SettingsGameConfigurationScreen : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { SettingsScreenModel() }
+        val screenModel = rememberScreenModel { SettingsGameConfigurationScreenModel() }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            SettingsScreenContract.Navigation.GameConfiguration -> navigator.push(SettingsGameConfigurationScreen())
-            SettingsScreenContract.Navigation.Back -> navigator.pop()
+            Navigation.Back -> navigator.pop()
             null -> {}
+
         }
 
         Scaffold(
@@ -62,13 +61,13 @@ class SettingsScreen : Screen {
                 )
             }
         ) {
-            SettingsContent(it, screenModel)
+            SettingsContent(it)
         }
     }
 }
 
 @Composable
-private fun SettingsContent(paddingValues: PaddingValues, screenModel: SettingsScreenModel) {
+private fun SettingsContent(paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -86,10 +85,6 @@ private fun SettingsContent(paddingValues: PaddingValues, screenModel: SettingsS
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
-
-            Button(onClick = { screenModel.sendEvent(Event.GameConfigurationClicked) }) {
-                Text(text = stringResource(MR.strings.settings_game_configuration))
-            }
         }
     }
 }

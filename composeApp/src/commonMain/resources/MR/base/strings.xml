@@ -34,4 +34,7 @@
     <string name="about_github_link">https://github.com/dbaelz/CompCardero</string>
 
     <string name="settings_title">Settings</string>
+    <string name="settings_game_configuration">Game configuration</string>
+
+    <string name="settings_gameconfiguration_title">Settings</string>
 </resources>
