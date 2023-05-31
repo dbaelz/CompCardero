@@ -1,10 +1,10 @@
 package de.dbaelz.compcardero.ui.setupgame
 
 import cafe.adriel.voyager.core.model.coroutineScope
-import de.dbaelz.compcardero.data.game.GameConfig
-import de.dbaelz.compcardero.data.game.GameDeck
 import de.dbaelz.compcardero.data.ValidateGameConfiguration
 import de.dbaelz.compcardero.data.ValidationResult
+import de.dbaelz.compcardero.data.game.GameConfig
+import de.dbaelz.compcardero.data.game.GameDeck
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Event
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Navigation
@@ -33,24 +33,14 @@ class SetupGameScreenModel(
         return when (event) {
             is Event.StartGame -> {
                 // TODO: Validate input. Navigate to GameScreen when valid, otherwise show errors
-                val validationResult = validateGameConfiguration.invoke(
-                    deckSize = event.deckSize,
-                    startHandSize = event.startHandSize,
-                    maxCardDrawPerTurn = event.maxCardDrawPerTurn,
-                    maxHandSize = event.maxHandSize,
-                    startHealth = event.startHealth,
-                    startEnergy = event.startEnergy,
-                    energyPerTurn = event.energyPerTurn,
-                    energySlotsPerTurn = event.energySlotsPerTurn,
-                    maxEnergySlots = event.maxEnergySlots
-                )
+                val validationResult = validateGameConfiguration.invoke(event.setupGameConfiguration)
 
                 when (validationResult) {
                     is ValidationResult.Success -> {
                         navigate(Navigation.Game(
-                            event.playerName.ifEmpty { "Player" },
+                            event.setupGameConfiguration.playerName.ifEmpty { "Player" },
                             validationResult.gameConfig,
-                            gameDecks.first { it.name == event.gameDeckName }
+                            gameDecks.first { it.name == event.setupGameConfiguration.gameDeckSelected }
                         ))
                     }
 

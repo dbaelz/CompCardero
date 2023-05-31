@@ -20,19 +20,7 @@ interface SetupGameScreenContract {
 
     sealed interface Event {
         object BackClicked : Event
-        data class StartGame(
-            val playerName: String,
-            val deckSize: Int,
-            val startHandSize: Int,
-            val maxCardDrawPerTurn: Int,
-            val maxHandSize: Int,
-            val startHealth: Int,
-            val startEnergy: Int,
-            val energyPerTurn: Int,
-            val energySlotsPerTurn: Int,
-            val maxEnergySlots: Int,
-            val gameDeckName: String
-        ) : Event
+        data class StartGame(val setupGameConfiguration: SetupGameConfiguration) : Event
     }
 
     sealed interface Navigation {

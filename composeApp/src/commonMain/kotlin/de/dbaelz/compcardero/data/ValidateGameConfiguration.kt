@@ -1,45 +1,26 @@
 package de.dbaelz.compcardero.data
 
+import de.dbaelz.compcardero.ui.setupgame.SetupGameConfiguration
 import de.dbaelz.compcardero.data.game.GameConfig
 
 interface ValidateGameConfiguration {
-    operator fun invoke(
-        deckSize: Int,
-        startHandSize: Int,
-        maxCardDrawPerTurn: Int,
-        maxHandSize: Int,
-        startHealth: Int,
-        startEnergy: Int,
-        energyPerTurn: Int,
-        energySlotsPerTurn: Int,
-        maxEnergySlots: Int
-    ): ValidationResult
+    operator fun invoke(gameConfiguration: SetupGameConfiguration): ValidationResult
 }
 
 class ValidateGameConfigurationImpl : ValidateGameConfiguration {
-    override fun invoke(
-        deckSize: Int,
-        startHandSize: Int,
-        maxCardDrawPerTurn: Int,
-        maxHandSize: Int,
-        startHealth: Int,
-        startEnergy: Int,
-        energyPerTurn: Int,
-        energySlotsPerTurn: Int,
-        maxEnergySlots: Int
-    ): ValidationResult {
+    override fun invoke(gameConfiguration: SetupGameConfiguration): ValidationResult {
         // TODO: Add validation code
         return ValidationResult.Success(
             GameConfig(
-                deckSize = deckSize,
-                startHandSize = startHandSize,
-                maxCardDrawPerTurn = maxCardDrawPerTurn,
-                maxHandSize = maxHandSize,
-                startHealth = startHealth,
-                startEnergy = startEnergy,
-                energyPerTurn = energyPerTurn,
-                energySlotsPerTurn = energySlotsPerTurn,
-                maxEnergySlots = maxEnergySlots
+                deckSize = gameConfiguration.deckSize,
+                startHandSize = gameConfiguration.startHandSize,
+                maxCardDrawPerTurn = gameConfiguration.maxCardDrawPerTurn,
+                maxHandSize = gameConfiguration.maxHandSize,
+                startHealth = gameConfiguration.startHealth,
+                startEnergy = gameConfiguration.startEnergy,
+                energyPerTurn = gameConfiguration.energyPerTurn,
+                energySlotsPerTurn = gameConfiguration.energySlotsPerTurn,
+                maxEnergySlots = gameConfiguration.maxEnergySlots
             )
         )
     }
