@@ -24,7 +24,7 @@ class SettingsScreenModel : BaseStateScreenModel<State, Event, Navigation>(State
     private fun reduce(state: State, event: Event): State {
         return when (event) {
             Event.GameConfigurationClicked -> {
-                navigate(Navigation.GameConfiguration)
+                navigate(Navigation.SettingsGameConfiguration)
                 state
             }
 

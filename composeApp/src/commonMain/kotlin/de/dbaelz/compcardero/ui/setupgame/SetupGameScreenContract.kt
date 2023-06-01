@@ -5,6 +5,7 @@ import de.dbaelz.compcardero.data.game.GameDeck
 import dev.icerock.moko.resources.StringResource
 
 interface SetupGameScreenContract {
+    // TODO: Use TextContent (e.g. error text) or change parameter of state to SetupGameConfiguration
     data class State(
         val deckSize: TextContent<Int>,
         val startHandSize: TextContent<Int>,

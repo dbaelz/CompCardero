@@ -9,7 +9,7 @@ interface SettingsScreenContract {
     }
 
     sealed interface Navigation {
-        object GameConfiguration : Navigation
+        object SettingsGameConfiguration : Navigation
         object Back : Navigation
     }
 }

@@ -40,7 +40,7 @@ import dev.icerock.moko.resources.compose.stringResource
 fun SetupGameUi(
     paddingValues: PaddingValues,
     setupGameUiState: SetupGameUiState,
-    onStartGameClick: () -> Unit
+    confirmButton: @Composable () -> Unit
 ) {
     val configItems = createConfigItems(setupGameUiState)
 
@@ -57,8 +57,8 @@ fun SetupGameUi(
                 setupGameUiState.gameDeckSelected
             ) { setupGameUiState.gameDeckSelected = it }
         },
-        startButton = {
-            StartGameButton { onStartGameClick() }
+        confirmButton = {
+            confirmButton()
         },
         configItems = {
             items(configItems) { configItem ->
@@ -77,7 +77,7 @@ private fun SetupGameContent(
     paddingValues: PaddingValues,
     playerNameTextField: @Composable () -> Unit,
     gameDecks: @Composable () -> Unit,
-    startButton: @Composable () -> Unit,
+    confirmButton: @Composable () -> Unit,
     configItems: LazyGridScope.() -> Unit,
 ) {
     LazyVerticalGrid(
@@ -98,22 +98,8 @@ private fun SetupGameContent(
         }
 
         item(span = { GridItemSpan(2) }) {
-            startButton()
+            confirmButton()
         }
-    }
-}
-
-@Composable
-private fun StartGameButton(onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier.fillMaxWidth().height(TextFieldDefaults.MinHeight),
-    ) {
-        Text(
-            text = stringResource(MR.strings.setupgame_start_game),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
-        )
     }
 }
 
@@ -226,7 +212,7 @@ class SetupGameUiState(setupGameConfiguration: SetupGameConfiguration) {
 }
 
 @Composable
-fun rememberSetupGameConfigurationState(
+fun rememberSetupGameUiState(
     setupGameConfiguration: SetupGameConfiguration
 ): SetupGameUiState = rememberSaveable(saver = SetupGameUiState.Saver) {
     SetupGameUiState(setupGameConfiguration)

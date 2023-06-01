@@ -1,9 +1,13 @@
 package de.dbaelz.compcardero.ui.setupgame
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,6 +15,9 @@ import androidx.compose.material.icons.filled.PlayCircleFilled
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -50,7 +57,7 @@ class SetupGameScreen : Screen {
 
         val state by screenModel.state.collectAsState()
 
-        val gameConfigurationState = rememberSetupGameConfigurationState(
+        val gameConfigurationState = rememberSetupGameUiState(
             SetupGameConfiguration(
                 playerName = "",
                 gameDeckNames = state.gameDeckNames,
@@ -108,7 +115,21 @@ class SetupGameScreen : Screen {
             SetupGameUi(
                 paddingValues,
                 gameConfigurationState
-            ) { onStartGameClick(gameConfigurationState) }
+            ) { StartGameButton { onStartGameClick(gameConfigurationState) } }
         }
+    }
+}
+
+@Composable
+private fun StartGameButton(onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().height(TextFieldDefaults.MinHeight),
+    ) {
+        Text(
+            text = stringResource(MR.strings.setupgame_start_game),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }

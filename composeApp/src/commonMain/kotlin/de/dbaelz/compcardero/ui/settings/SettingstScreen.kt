@@ -45,7 +45,7 @@ class SettingsScreen : Screen {
         val navigationState by screenModel.navigation.collectAsState(null)
         val navigator = LocalNavigator.currentOrThrow
         when (navigationState) {
-            SettingsScreenContract.Navigation.GameConfiguration -> navigator.push(SettingsGameConfigurationScreen())
+            SettingsScreenContract.Navigation.SettingsGameConfiguration -> navigator.push(SettingsGameConfigurationScreen())
             SettingsScreenContract.Navigation.Back -> navigator.pop()
             null -> {}
         }

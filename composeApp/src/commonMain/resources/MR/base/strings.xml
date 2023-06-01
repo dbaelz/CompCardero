@@ -37,4 +37,5 @@
     <string name="settings_game_configuration">Game configuration</string>
 
     <string name="settings_gameconfiguration_title">Settings</string>
+    <string name="settings_gameconfiguration_save">Save configuration</string>
 </resources>
