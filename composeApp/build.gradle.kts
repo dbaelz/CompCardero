@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.cocoapods)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.moko.resources)
     alias(libs.plugins.buildConfig)
 }
@@ -56,6 +57,7 @@ kotlin {
                 implementation(libs.multiplatformSettingsNoArg)
                 implementation(libs.multiplatformSettingsSerialization)
                 implementation(libs.koin.core)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
