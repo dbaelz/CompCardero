@@ -3,15 +3,14 @@ package de.dbaelz.compcardero.ui.settings.gameconfiguration
 import cafe.adriel.voyager.core.model.coroutineScope
 import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.Settings
-import com.russhwolf.settings.serialization.decodeValue
 import com.russhwolf.settings.serialization.encodeValue
+import de.dbaelz.compcardero.data.GetGameConfig
 import de.dbaelz.compcardero.data.SettingsKey
 import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Event
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Navigation
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.State
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -23,6 +22,8 @@ import org.koin.core.component.inject
 class SettingsGameConfigurationScreenModel :
     BaseStateScreenModel<State, Event, Navigation>(State.Loading),
     KoinComponent {
+    private val getGameConfig: GetGameConfig by inject()
+
     private val settings: Settings by inject()
 
     init {
@@ -31,13 +32,7 @@ class SettingsGameConfigurationScreenModel :
         }
 
         coroutineScope.launch {
-            delay(200)
-            val gameConfig = settings.decodeValue(
-                GameConfig.serializer(),
-                SettingsKey.GAME_CONFIG.name,
-                GameConfig()
-            )
-            sendEvent(Event.Loaded(gameConfig))
+            sendEvent(Event.Loaded(getGameConfig()))
         }
     }
 

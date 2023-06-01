@@ -28,7 +28,6 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.data.game.GameConfig
-import de.dbaelz.compcardero.decks.fantasyGameDeck
 import de.dbaelz.compcardero.ui.game.GameScreen
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Event
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Navigation
@@ -38,9 +37,7 @@ import dev.icerock.moko.resources.compose.stringResource
 class SetupGameScreen : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel {
-            SetupGameScreenModel(GameConfig(), listOf(fantasyGameDeck))
-        }
+        val screenModel = rememberScreenModel { SetupGameScreenModel() }
 
         // TODO: Find a way to do this outside of this composable
         val navigationState by screenModel.navigation.collectAsState(null)

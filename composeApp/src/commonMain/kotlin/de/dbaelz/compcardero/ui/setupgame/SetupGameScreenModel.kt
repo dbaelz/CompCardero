@@ -1,32 +1,27 @@
 package de.dbaelz.compcardero.ui.setupgame
 
 import cafe.adriel.voyager.core.model.coroutineScope
-import com.russhwolf.settings.Settings
-import com.russhwolf.settings.serialization.decodeValue
-import de.dbaelz.compcardero.data.SettingsKey
+import de.dbaelz.compcardero.data.GetGameConfig
+import de.dbaelz.compcardero.data.GetGameDecks
 import de.dbaelz.compcardero.data.ValidateGameConfiguration
 import de.dbaelz.compcardero.data.ValidationResult
-import de.dbaelz.compcardero.data.game.GameConfig
-import de.dbaelz.compcardero.data.game.GameDeck
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Event
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.Navigation
 import de.dbaelz.compcardero.ui.setupgame.SetupGameScreenContract.State
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class SetupGameScreenModel(
-    private val gameConfig: GameConfig,
-    private val gameDecks: List<GameDeck>
-) : BaseStateScreenModel<State, Event, Navigation>(State.Loading),
+class SetupGameScreenModel : BaseStateScreenModel<State, Event, Navigation>(State.Loading),
     KoinComponent {
-    private val validateGameConfiguration: ValidateGameConfiguration by inject()
+    private val getGameConfig: GetGameConfig by inject()
 
-    private val settings: Settings by inject()
+    private val getGameDecks: GetGameDecks by inject()
+
+    private val validateGameConfiguration: ValidateGameConfiguration by inject()
 
     init {
         coroutineScope.launch {
@@ -34,13 +29,7 @@ class SetupGameScreenModel(
         }
 
         coroutineScope.launch {
-            delay(200)
-            val gameConfig = settings.decodeValue(
-                GameConfig.serializer(),
-                SettingsKey.GAME_CONFIG.name,
-                GameConfig()
-            )
-            sendEvent(Event.Loaded(gameConfig))
+            sendEvent(Event.Loaded(getGameConfig()))
         }
     }
 
@@ -56,10 +45,12 @@ class SetupGameScreenModel(
 
                 when (validationResult) {
                     is ValidationResult.Success -> {
+                        val gameDecks = getGameDecks()
                         navigate(Navigation.Game(
                             event.gameConfig.playerName.ifEmpty { "Player" },
                             validationResult.gameConfig,
-                            gameDecks.first { it.name == event.gameConfig.gameDeckSelected }
+                            gameDecks.firstOrNull { it.name == event.gameConfig.gameDeckSelected }
+                                ?: gameDecks.first()
                         ))
                     }
 
