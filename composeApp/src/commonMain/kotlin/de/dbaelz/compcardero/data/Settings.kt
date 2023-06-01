@@ -1,5 +1,5 @@
 package de.dbaelz.compcardero.data
 
 enum class SettingsKey {
-    GAME_CONFIGURATION
+    GAME_CONFIG
 }

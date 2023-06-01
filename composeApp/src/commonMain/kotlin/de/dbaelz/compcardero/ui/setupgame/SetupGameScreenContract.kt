@@ -5,7 +5,7 @@ import de.dbaelz.compcardero.data.game.GameDeck
 import dev.icerock.moko.resources.StringResource
 
 interface SetupGameScreenContract {
-    // TODO: Use TextContent (e.g. error text) or change parameter of state to SetupGameConfiguration
+    // TODO: Use TextContent (e.g. error text) or change parameter of state to GameConfig
     data class State(
         val deckSize: TextContent<Int>,
         val startHandSize: TextContent<Int>,
@@ -21,7 +21,7 @@ interface SetupGameScreenContract {
 
     sealed interface Event {
         object BackClicked : Event
-        data class StartGame(val setupGameConfiguration: SetupGameConfiguration) : Event
+        data class StartGame(val gameConfig: GameConfig) : Event
     }
 
     sealed interface Navigation {

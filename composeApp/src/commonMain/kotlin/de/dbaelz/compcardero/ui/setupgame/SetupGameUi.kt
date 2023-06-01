@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -14,11 +13,9 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -31,8 +28,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.data.game.GameConfig
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -158,20 +155,20 @@ private fun GameDecks(
 }
 
 @Stable
-class SetupGameUiState(setupGameConfiguration: SetupGameConfiguration) {
-    var playerName: String by mutableStateOf(setupGameConfiguration.playerName)
-    var gameDeckNames: List<String> by mutableStateOf(setupGameConfiguration.gameDeckNames)
-    var deckSize: Int by mutableStateOf(setupGameConfiguration.deckSize)
-    var startHandSize: Int by mutableStateOf(setupGameConfiguration.startHandSize)
-    var maxCardDrawPerTurn: Int by mutableStateOf(setupGameConfiguration.maxCardDrawPerTurn)
-    var maxHandSize: Int by mutableStateOf(setupGameConfiguration.maxHandSize)
-    var startHealth: Int by mutableStateOf(setupGameConfiguration.startHealth)
-    var startEnergy: Int by mutableStateOf(setupGameConfiguration.startEnergy)
-    var energyPerTurn: Int by mutableStateOf(setupGameConfiguration.energyPerTurn)
-    var energySlotsPerTurn: Int by mutableStateOf(setupGameConfiguration.energySlotsPerTurn)
-    var maxEnergySlots: Int by mutableStateOf(setupGameConfiguration.maxEnergySlots)
+class SetupGameUiState(gameConfig: GameConfig) {
+    var playerName: String by mutableStateOf(gameConfig.playerName)
+    var gameDeckNames: List<String> by mutableStateOf(gameConfig.gameDeckNames)
+    var deckSize: Int by mutableStateOf(gameConfig.deckSize)
+    var startHandSize: Int by mutableStateOf(gameConfig.startHandSize)
+    var maxCardDrawPerTurn: Int by mutableStateOf(gameConfig.maxCardDrawPerTurn)
+    var maxHandSize: Int by mutableStateOf(gameConfig.maxHandSize)
+    var startHealth: Int by mutableStateOf(gameConfig.startHealth)
+    var startEnergy: Int by mutableStateOf(gameConfig.startEnergy)
+    var energyPerTurn: Int by mutableStateOf(gameConfig.energyPerTurn)
+    var energySlotsPerTurn: Int by mutableStateOf(gameConfig.energySlotsPerTurn)
+    var maxEnergySlots: Int by mutableStateOf(gameConfig.maxEnergySlots)
 
-    var gameDeckSelected: String by mutableStateOf(setupGameConfiguration.gameDeckSelected)
+    var gameDeckSelected: String by mutableStateOf(gameConfig.gameDeckSelected)
 
     companion object {
         val Saver = Saver<SetupGameUiState, List<Any>>(
@@ -192,7 +189,7 @@ class SetupGameUiState(setupGameConfiguration: SetupGameConfiguration) {
             },
             restore = {
                 SetupGameUiState(
-                    SetupGameConfiguration(
+                    GameConfig(
                         playerName = it[0] as String,
                         gameDeckNames = it[1] as List<String>,
                         deckSize = it[2] as Int,
@@ -213,9 +210,9 @@ class SetupGameUiState(setupGameConfiguration: SetupGameConfiguration) {
 
 @Composable
 fun rememberSetupGameUiState(
-    setupGameConfiguration: SetupGameConfiguration
+    gameConfig: GameConfig
 ): SetupGameUiState = rememberSaveable(saver = SetupGameUiState.Saver) {
-    SetupGameUiState(setupGameConfiguration)
+    SetupGameUiState(gameConfig)
 }
 
 private data class ConfigItem(
@@ -224,48 +221,57 @@ private data class ConfigItem(
     val onValueChange: (Int) -> Unit
 )
 
-private fun createConfigItems(setupGameConfigurationState: SetupGameUiState): List<ConfigItem> {
+private fun createConfigItems(setupGameUiState: SetupGameUiState): List<ConfigItem> {
     return listOf(
         ConfigItem(
-            setupGameConfigurationState.deckSize,
+            setupGameUiState.deckSize,
             MR.strings.setupgame_textfield_decksize
-        ) { setupGameConfigurationState.deckSize = it },
+        ) { setupGameUiState.deckSize = it },
         ConfigItem(
-            setupGameConfigurationState.startHandSize,
+            setupGameUiState.startHandSize,
             MR.strings.setupgame_textfield_starthandsize
         ) {
-            setupGameConfigurationState.startHandSize = it
+            setupGameUiState.startHandSize = it
         },
         ConfigItem(
-            setupGameConfigurationState.maxCardDrawPerTurn,
+            setupGameUiState.maxCardDrawPerTurn,
             MR.strings.setupgame_textfield_maxcarddrawperturn
-        ) { setupGameConfigurationState.maxCardDrawPerTurn = it },
-        ConfigItem(setupGameConfigurationState.maxHandSize, MR.strings.setupgame_textfield_maxhandsize) {
-            setupGameConfigurationState.maxHandSize = it
-        },
-        ConfigItem(setupGameConfigurationState.startHealth, MR.strings.setupgame_textfield_starthealth) {
-            setupGameConfigurationState.startHealth = it
-        },
-        ConfigItem(setupGameConfigurationState.startEnergy, MR.strings.setupgame_textfield_startenergy) {
-            setupGameConfigurationState.startEnergy = it
+        ) { setupGameUiState.maxCardDrawPerTurn = it },
+        ConfigItem(
+            setupGameUiState.maxHandSize,
+            MR.strings.setupgame_textfield_maxhandsize
+        ) {
+            setupGameUiState.maxHandSize = it
         },
         ConfigItem(
-            setupGameConfigurationState.energyPerTurn,
+            setupGameUiState.startHealth,
+            MR.strings.setupgame_textfield_starthealth
+        ) {
+            setupGameUiState.startHealth = it
+        },
+        ConfigItem(
+            setupGameUiState.startEnergy,
+            MR.strings.setupgame_textfield_startenergy
+        ) {
+            setupGameUiState.startEnergy = it
+        },
+        ConfigItem(
+            setupGameUiState.energyPerTurn,
             MR.strings.setupgame_textfield_energyperturn
         ) {
-            setupGameConfigurationState.energyPerTurn = it
+            setupGameUiState.energyPerTurn = it
         },
         ConfigItem(
-            setupGameConfigurationState.energySlotsPerTurn,
+            setupGameUiState.energySlotsPerTurn,
             MR.strings.setupgame_textfield_energyslotsperturn
         ) {
-            setupGameConfigurationState.energySlotsPerTurn = it
+            setupGameUiState.energySlotsPerTurn = it
         },
         ConfigItem(
-            setupGameConfigurationState.maxEnergySlots,
+            setupGameUiState.maxEnergySlots,
             MR.strings.setupgame_textfield_maxenergyslots
         ) {
-            setupGameConfigurationState.maxEnergySlots = it
+            setupGameUiState.maxEnergySlots = it
         },
     )
 }

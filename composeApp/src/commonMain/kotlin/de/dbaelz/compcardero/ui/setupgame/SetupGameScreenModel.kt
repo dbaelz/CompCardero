@@ -33,14 +33,14 @@ class SetupGameScreenModel(
         return when (event) {
             is Event.StartGame -> {
                 // TODO: Validate input. Navigate to GameScreen when valid, otherwise show errors
-                val validationResult = validateGameConfiguration.invoke(event.setupGameConfiguration)
+                val validationResult = validateGameConfiguration.invoke(event.gameConfig)
 
                 when (validationResult) {
                     is ValidationResult.Success -> {
                         navigate(Navigation.Game(
-                            event.setupGameConfiguration.playerName.ifEmpty { "Player" },
+                            event.gameConfig.playerName.ifEmpty { "Player" },
                             validationResult.gameConfig,
-                            gameDecks.first { it.name == event.setupGameConfiguration.gameDeckSelected }
+                            gameDecks.first { it.name == event.gameConfig.gameDeckSelected }
                         ))
                     }
 

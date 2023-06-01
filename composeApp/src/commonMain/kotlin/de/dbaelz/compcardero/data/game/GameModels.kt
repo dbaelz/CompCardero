@@ -1,17 +1,23 @@
 package de.dbaelz.compcardero.data.game
 
+import de.dbaelz.compcardero.decks.fantasyGameDeck
 import dev.icerock.moko.resources.ImageResource
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class GameConfig(
-    val deckSize: Int = 24,
-    val startHandSize: Int = 3,
-    val maxCardDrawPerTurn: Int = 1,
-    val maxHandSize: Int = 5,
-    val startHealth: Int = 20,
-    val startEnergy: Int = 3,
-    val energyPerTurn: Int = 2,
-    val energySlotsPerTurn: Int = 1,
-    val maxEnergySlots: Int = 12
+    var playerName: String = "Player",
+    var gameDeckNames: List<String> = listOf(fantasyGameDeck.name),
+    var deckSize: Int = 24,
+    var startHandSize: Int = 3,
+    var maxCardDrawPerTurn: Int = 1,
+    var maxHandSize: Int = 5,
+    var startHealth: Int = 20,
+    var startEnergy: Int = 3,
+    var energyPerTurn: Int = 2,
+    var energySlotsPerTurn: Int = 1,
+    var maxEnergySlots: Int = 12,
+    var gameDeckSelected: String = gameDeckNames.first()
 )
 
 data class GameDeck(

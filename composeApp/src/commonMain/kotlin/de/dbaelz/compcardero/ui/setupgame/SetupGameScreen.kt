@@ -58,7 +58,7 @@ class SetupGameScreen : Screen {
         val state by screenModel.state.collectAsState()
 
         val gameConfigurationState = rememberSetupGameUiState(
-            SetupGameConfiguration(
+            GameConfig(
                 playerName = "",
                 gameDeckNames = state.gameDeckNames,
                 deckSize = state.deckSize.value,
@@ -76,7 +76,7 @@ class SetupGameScreen : Screen {
         val onStartGameClick: (SetupGameUiState) -> Unit = {
             screenModel.sendEvent(
                 Event.StartGame(
-                    SetupGameConfiguration(
+                    GameConfig(
                         playerName = it.playerName,
                         gameDeckNames = it.gameDeckNames,
                         deckSize = it.deckSize,

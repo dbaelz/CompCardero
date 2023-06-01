@@ -6,11 +6,11 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.serialization.decodeValue
 import com.russhwolf.settings.serialization.encodeValue
 import de.dbaelz.compcardero.data.SettingsKey
+import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Event
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Navigation
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.State
-import de.dbaelz.compcardero.ui.setupgame.SetupGameConfiguration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.launch
@@ -32,19 +32,19 @@ class SettingsGameConfigurationScreenModel :
 
         coroutineScope.launch {
             delay(200)
-            val setupGameConfiguration = settings.decodeValue(
-                SetupGameConfiguration.serializer(),
-                SettingsKey.GAME_CONFIGURATION.name,
-                SetupGameConfiguration()
+            val gameConfig = settings.decodeValue(
+                GameConfig.serializer(),
+                SettingsKey.GAME_CONFIG.name,
+                GameConfig()
             )
-            sendEvent(Event.Loaded(setupGameConfiguration))
+            sendEvent(Event.Loaded(gameConfig))
         }
     }
 
     private fun reduce(state: State, event: Event): State {
         return when (event) {
             is Event.Loaded -> {
-                State.Content(event.setupGameConfiguration)
+                State.Content(event.gameConfig)
             }
 
             Event.BackClicked -> {
@@ -55,9 +55,9 @@ class SettingsGameConfigurationScreenModel :
             is Event.SaveClicked -> {
                 // TODO: Validate input
                 settings.encodeValue(
-                    SetupGameConfiguration.serializer(),
-                    SettingsKey.GAME_CONFIGURATION.name,
-                    event.setupGameConfiguration
+                    GameConfig.serializer(),
+                    SettingsKey.GAME_CONFIG.name,
+                    event.gameConfig
                 )
                 navigate(Navigation.Back)
                 state

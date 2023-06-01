@@ -27,9 +27,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
+import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Event
 import de.dbaelz.compcardero.ui.settings.gameconfiguration.SettingsGameConfigurationScreenContract.Navigation
-import de.dbaelz.compcardero.ui.setupgame.SetupGameConfiguration
 import de.dbaelz.compcardero.ui.setupgame.SetupGameUi
 import de.dbaelz.compcardero.ui.setupgame.rememberSetupGameUiState
 import dev.icerock.moko.resources.compose.stringResource
@@ -72,8 +72,8 @@ class SettingsGameConfigurationScreen : Screen {
                 }
 
                 is SettingsGameConfigurationScreenContract.State.Content -> {
-                    SettingsContent(it, currentState.gameConfiguration) { setupGameConfiguration ->
-                        screenModel.sendEvent(Event.SaveClicked(setupGameConfiguration))
+                    SettingsContent(it, currentState.gameConfig) { gameConfig ->
+                        screenModel.sendEvent(Event.SaveClicked(gameConfig))
                     }
                 }
             }
@@ -85,15 +85,15 @@ class SettingsGameConfigurationScreen : Screen {
 @Composable
 private fun SettingsContent(
     paddingValues: PaddingValues,
-    setupGameConfiguration: SetupGameConfiguration,
-    onSaveClicked: (SetupGameConfiguration) -> Unit
+    gameConfig: GameConfig,
+    onSaveClicked: (GameConfig) -> Unit
 ) {
-    val gameConfigurationState = rememberSetupGameUiState(setupGameConfiguration)
+    val gameConfigurationState = rememberSetupGameUiState(gameConfig)
 
     SetupGameUi(paddingValues, gameConfigurationState) {
-        SaveSetupGameConfiguration {
+        SaveGameConfig {
             onSaveClicked(
-                SetupGameConfiguration(
+                GameConfig(
                     playerName = gameConfigurationState.playerName,
                     gameDeckNames = gameConfigurationState.gameDeckNames,
                     deckSize = gameConfigurationState.deckSize,
@@ -113,7 +113,7 @@ private fun SettingsContent(
 }
 
 @Composable
-private fun SaveSetupGameConfiguration(onClick: () -> Unit) {
+private fun SaveGameConfig(onClick: () -> Unit) {
     Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth().height(TextFieldDefaults.MinHeight),
