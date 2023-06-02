@@ -105,6 +105,7 @@ private fun PlayerNameTextField(playerName: String, onValueChange: (String) -> U
     OutlinedTextField(
         value = playerName,
         onValueChange = onValueChange,
+        singleLine = true,
         label = { Text(stringResource(MR.strings.setupgame_textfield_playername)) }
     )
 }
