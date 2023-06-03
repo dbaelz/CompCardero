@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,6 +33,7 @@ import de.dbaelz.compcardero.color_card_border
 import de.dbaelz.compcardero.color_energy
 import de.dbaelz.compcardero.color_health
 import de.dbaelz.compcardero.color_indicator_background
+import de.dbaelz.compcardero.color_indicator_text
 import de.dbaelz.compcardero.data.game.GameCard
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
@@ -89,7 +89,7 @@ private fun IndicatorLabel(value: Int, shape: Shape, color: Color) {
     ) {
         Text(
             text = value.toString(),
-            color = MaterialTheme.colors.onPrimary,
+            color = color_indicator_text,
             fontSize = 14.sp,
             textAlign = TextAlign.Center
         )
@@ -122,7 +122,7 @@ fun Deck(modifier: Modifier = Modifier, deckCard: ImageResource, numberCards: In
         ) {
             Text(
                 text = numberCards.toString(),
-                color = MaterialTheme.colors.onPrimary,
+                color = color_indicator_text,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold

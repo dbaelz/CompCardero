@@ -41,6 +41,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import de.dbaelz.compcardero.MR
 import de.dbaelz.compcardero.color_indicator_background
+import de.dbaelz.compcardero.color_indicator_text
 import de.dbaelz.compcardero.data.game.PlayerStats
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Event
 import de.dbaelz.compcardero.ui.endgame.EndGameScreenContract.Navigation
@@ -119,7 +120,7 @@ private fun Trophy(endScreenImageRes: ImageResource, maxSize: Dp, playerName: St
                 .background(color_indicator_background)
                 .padding(8.dp)
                 .align(Alignment.BottomCenter),
-            color = MaterialTheme.colors.onPrimary,
+            color = color_indicator_text,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -136,7 +137,7 @@ private fun StatsRow(playerStats: PlayerStats, isWinner: Boolean = false) {
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides MaterialTheme.colors.onPrimary
+            LocalContentColor provides if (isWinner) MaterialTheme.colors.onPrimary else color_indicator_text
         ) {
             val modifier = Modifier.padding(8.dp)
             Text(

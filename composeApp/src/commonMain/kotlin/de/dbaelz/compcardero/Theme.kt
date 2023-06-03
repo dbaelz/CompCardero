@@ -24,8 +24,10 @@ private val LightColors = lightColors(
 
 private val DarkColors = darkColors(
     primary = md_theme_dark_primary,
+    primaryVariant = md_theme_dark_primary_variant,
     onPrimary = md_theme_dark_onPrimary,
     secondary = md_theme_dark_secondary,
+    secondaryVariant = md_theme_dark_secondary_variant,
     onSecondary = md_theme_dark_onSecondary,
     error = md_theme_dark_error,
     onError = md_theme_dark_onError,

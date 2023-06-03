@@ -30,6 +30,7 @@ import de.dbaelz.compcardero.color_card_border
 import de.dbaelz.compcardero.color_energy
 import de.dbaelz.compcardero.color_health
 import de.dbaelz.compcardero.color_indicator_background
+import de.dbaelz.compcardero.color_indicator_text
 import de.dbaelz.compcardero.data.game.GameCard
 import de.dbaelz.compcardero.data.game.PlayerStats
 import dev.icerock.moko.resources.ImageResource
@@ -121,7 +122,7 @@ private fun PlayerStatsView(playerStats: PlayerStats, onEndTurnClicked: (() -> U
             modifier = Modifier.fillMaxWidth(0.8f)
                 .padding(vertical = 4.dp)
                 .align(Alignment.CenterHorizontally),
-            color = MaterialTheme.colors.onPrimary,
+            color = color_indicator_text,
             minLines = 1,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
