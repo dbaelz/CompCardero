@@ -5,6 +5,8 @@ interface SettingsScreenContract {
 
     sealed interface Event {
         object GameConfigurationClicked : Event
+
+        data class SaveConfigClicked(val darkTheme: Boolean) : Event
         object BackClicked : Event
     }
 

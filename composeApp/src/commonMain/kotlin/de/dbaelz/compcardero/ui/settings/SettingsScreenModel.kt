@@ -2,6 +2,7 @@ package de.dbaelz.compcardero.ui.settings
 
 import cafe.adriel.voyager.core.model.coroutineScope
 import com.russhwolf.settings.Settings
+import de.dbaelz.compcardero.data.SettingsKey
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
 import de.dbaelz.compcardero.ui.settings.SettingsScreenContract.Event
 import de.dbaelz.compcardero.ui.settings.SettingsScreenContract.Navigation
@@ -25,6 +26,11 @@ class SettingsScreenModel : BaseStateScreenModel<State, Event, Navigation>(State
         return when (event) {
             Event.GameConfigurationClicked -> {
                 navigate(Navigation.SettingsGameConfiguration)
+                state
+            }
+
+            is Event.SaveConfigClicked -> {
+                settings.putBoolean(SettingsKey.DARK_THEME.name, event.darkTheme)
                 state
             }
 
