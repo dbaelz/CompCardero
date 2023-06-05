@@ -5,6 +5,8 @@ import de.dbaelz.compcardero.data.GetGameConfig
 import de.dbaelz.compcardero.data.GetGameConfigImpl
 import de.dbaelz.compcardero.data.GetGameDecks
 import de.dbaelz.compcardero.data.GetGameDecksImpl
+import de.dbaelz.compcardero.data.SetGameConfig
+import de.dbaelz.compcardero.data.SetGameConfigImpl
 import de.dbaelz.compcardero.data.ValidateGameConfiguration
 import de.dbaelz.compcardero.data.ValidateGameConfigurationImpl
 import de.dbaelz.compcardero.decks.fantasyGameDeck
@@ -14,6 +16,8 @@ fun commonModule() = module {
     single<ValidateGameConfiguration> { ValidateGameConfigurationImpl() }
 
     single<GetGameConfig> { GetGameConfigImpl() }
+
+    single<SetGameConfig> { SetGameConfigImpl() }
 
     single<GetGameDecks> { GetGameDecksImpl(listOf(fantasyGameDeck)) }
 

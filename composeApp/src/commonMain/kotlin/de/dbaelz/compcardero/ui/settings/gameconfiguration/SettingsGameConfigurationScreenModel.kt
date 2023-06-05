@@ -5,6 +5,7 @@ import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.serialization.encodeValue
 import de.dbaelz.compcardero.data.GetGameConfig
+import de.dbaelz.compcardero.data.SetGameConfig
 import de.dbaelz.compcardero.data.SettingsKey
 import de.dbaelz.compcardero.data.game.GameConfig
 import de.dbaelz.compcardero.ui.BaseStateScreenModel
@@ -24,7 +25,7 @@ class SettingsGameConfigurationScreenModel :
     KoinComponent {
     private val getGameConfig: GetGameConfig by inject()
 
-    private val settings: Settings by inject()
+    private val setGameConfig: SetGameConfig by inject()
 
     init {
         coroutineScope.launch {
@@ -49,11 +50,7 @@ class SettingsGameConfigurationScreenModel :
 
             is Event.SaveClicked -> {
                 // TODO: Validate input
-                settings.encodeValue(
-                    GameConfig.serializer(),
-                    SettingsKey.GAME_CONFIG.name,
-                    event.gameConfig
-                )
+                setGameConfig(event.gameConfig)
                 navigate(Navigation.Back)
                 state
             }
