@@ -110,11 +110,11 @@ kotlin {
 
 android {
     namespace = "de.dbaelz.compcardero"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
 
         applicationId = "de.dbaelz.compcardero"
         versionCode = 1
